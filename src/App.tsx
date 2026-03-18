@@ -1,5 +1,5 @@
 import { AnimatePresence } from 'framer-motion'
-import { NavLink, Route, Routes, useLocation } from 'react-router-dom'
+import {  Route, Routes, useLocation } from 'react-router-dom'
 import About from './pages/About'
 import CharterPackages from './pages/CharterPackages'
 import Contact from './pages/Contact'
@@ -7,7 +7,7 @@ import Destinations from './pages/Destinations'
 import Gallery from './pages/Gallery'
 import Home from './pages/Home'
 import Services from './pages/Services'
-import { Header, HeroSection } from './components'
+import { Header } from './components'
 
 function AnimatedRoutes() {
   const location = useLocation()
@@ -27,10 +27,7 @@ function AnimatedRoutes() {
   )
 }
 
-const navLinkClass = ({ isActive }: { isActive: boolean }) =>
-  `text-sm font-medium transition-colors ${
-    isActive ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
-  }`
+
 
 export default function App() {
   return (
