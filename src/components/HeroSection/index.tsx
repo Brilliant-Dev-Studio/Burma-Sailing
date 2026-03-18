@@ -13,11 +13,11 @@ export const HeroSection = () => {
           onError={() => {
             // eslint-disable-next-line no-console
             console.error(
-              "Hero video failed to load. Expected at /public/videos/hero.mp4",
+              "Hero video failed to load. Expected at /videos/hero.mp4",
             );
           }}
         >
-          <source src="src/assets/videos/hero.mp4" type="video/mp4" />
+          <source src="/videos/hero.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
 
