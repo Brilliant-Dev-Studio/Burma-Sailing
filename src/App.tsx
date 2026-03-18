@@ -1,0 +1,44 @@
+import { AnimatePresence } from 'framer-motion'
+import { NavLink, Route, Routes, useLocation } from 'react-router-dom'
+import About from './pages/About'
+import CharterPackages from './pages/CharterPackages'
+import Contact from './pages/Contact'
+import Destinations from './pages/Destinations'
+import Gallery from './pages/Gallery'
+import Home from './pages/Home'
+import Services from './pages/Services'
+import { Header, HeroSection } from './components'
+
+function AnimatedRoutes() {
+  const location = useLocation()
+
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/charter-packages" element={<CharterPackages />} />
+        <Route path="/destinations" element={<Destinations />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </AnimatePresence>
+  )
+}
+
+const navLinkClass = ({ isActive }: { isActive: boolean }) =>
+  `text-sm font-medium transition-colors ${
+    isActive ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
+  }`
+
+export default function App() {
+  return (
+    <div className="min-h-screen bg-background p-2">
+      <Header />
+      <main className="mx-auto w-full ">
+        <AnimatedRoutes />
+      </main>
+    </div>
+  )
+}
