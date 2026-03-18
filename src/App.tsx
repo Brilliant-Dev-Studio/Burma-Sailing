@@ -7,7 +7,7 @@ import Destinations from './pages/Destinations'
 import Gallery from './pages/Gallery'
 import Home from './pages/Home'
 import Services from './pages/Services'
-import { Header } from './components'
+import { Footer, Header } from './components'
 
 function AnimatedRoutes() {
   const location = useLocation()
@@ -31,11 +31,15 @@ function AnimatedRoutes() {
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-background p-2">
+ <>
+    <div className="min-h-screen bg-background px-2 flex flex-col">
       <Header />
-      <main className="mx-auto w-full ">
+      <main className="mx-auto w-full pt-[72px] flex-1">
         <AnimatedRoutes />
       </main>
+     
     </div>
+    <Footer />
+ </>
   )
 }
