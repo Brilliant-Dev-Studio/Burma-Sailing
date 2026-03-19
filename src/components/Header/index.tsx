@@ -210,7 +210,7 @@ const Header = () => {
         {isMenuOpen && (
           <motion.div
             key="menu-overlay"
-            className="fixed left-0 right-0 top-0 z-[40] h-[60svh] lg:hidden"
+            className="fixed left-0 right-0 top-0 z-[40] h-[75svh] lg:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -239,7 +239,7 @@ const Header = () => {
                   show: { transition: shouldReduceMotion ? {} : { staggerChildren: 0.04, delayChildren: 0.06 } },
                 }}
               >
-                {[...allPages, { label: 'Contact', href: '/contact', desc: '' }].map((item) => {
+                {[...allPages].map((item) => {
                   const active = isActive(item.href)
                   return (
                     <motion.a
