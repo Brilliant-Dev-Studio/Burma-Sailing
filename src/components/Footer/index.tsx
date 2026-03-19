@@ -4,8 +4,8 @@ import logo from "../../assets/logo.png";
 const Footer = () => {
   return (
     <footer className="mt-16 ">
-      <div className="mx-auto pt-10 pb-5 border-t w-full px-3  bg-slate-100 ">
-        <div className="grid gap-10 md:grid-cols-12">
+      <div className="mx-auto  pt-10 pb-5 border-t w-full px-3 lg:px-10  bg-slate-100 ">
+        <div className="grid  gap-10 md:grid-cols-12">
           <div className="md:col-span-5">
             <a href="/" className="group inline-flex items-center gap-3">
               <span className="grid h-11 w-11 place-items-center rounded-full bg-gradient-to-br from-slate-900 to-slate-700 shadow-sm ring-1 ring-black/5">
@@ -32,7 +32,7 @@ const Footer = () => {
 
             <div className="mt-6 flex items-center gap-3">
               <a
-                href="https://facebook.com"
+                href="https://facebook.com/burmasailing"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Facebook"
@@ -41,7 +41,7 @@ const Footer = () => {
                 <Facebook className="h-5 w-5" />
               </a>
               <a
-                href="https://instagram.com"
+                href="https://instagram.com/burmasailing"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Instagram"
@@ -50,7 +50,7 @@ const Footer = () => {
                 <Instagram className="h-5 w-5" />
               </a>
               <a
-                href="https://tiktok.com"
+                href="https://tiktok.com/@burmasailing"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="TikTok"
@@ -115,18 +115,20 @@ const Footer = () => {
                   Contact
                 </p>
                 <div className="mt-4 space-y-3 text-[15px] text-slate-600">
-                  <p>Myanmar • Mergui Archipelago</p>
+                  <p>Kawthaung, Myanmar • Mergui Archipelago</p>
                   <a
                     className="block w-fit font-medium text-slate-900 hover:underline"
-                    href="mailto:hello@burmasailing.com"
+                    href="mailto:info@burmasailing.com"
                   >
-                    hello@burmasailing.com
+                    info@burmasailing.com
                   </a>
                   <a
                     className="block w-fit font-medium text-slate-900 hover:underline"
-                    href="tel:+959000000000"
+                    href="https://wa.me/95912345678"
+                    target="_blank"
+                    rel="noreferrer"
                   >
-                    +95 900 000 0000
+                    WhatsApp / Viber: +95 912 345 678
                   </a>
 
                   <a

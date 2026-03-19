@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async'
 import { HeroSection } from '@/components'
 import { motion } from 'framer-motion'
 
@@ -17,6 +18,14 @@ export default function Home() {
       transition={{ duration: 0.25 }}
       className=""
     >
+      <Helmet>
+        <title>Burma Sailing | Home</title>
+        <meta name="description" content="Burma Sailing — your trusted yacht agent and passage specialist in the Mergui Archipelago, Myanmar. Expert permits, logistics, and local guidance for visiting yachts." />
+        <meta name="keywords" content="Burma Sailing, Mergui Archipelago, yacht agent Myanmar, sailing Myanmar, Kawthaung, cruising permits" />
+        <meta property="og:title" content="Burma Sailing | Home" />
+        <meta property="og:description" content="Your trusted passage to the Mergui Archipelago. Expert yacht agency services in southern Myanmar." />
+        <meta property="og:type" content="website" />
+      </Helmet>
      <HeroSection />
     </motion.section>
   )

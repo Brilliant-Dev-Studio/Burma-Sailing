@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 
 const pageMotion = {
@@ -16,6 +17,14 @@ export default function CharterPackages() {
       transition={{ duration: 0.25 }}
       className="space-y-4"
     >
+      <Helmet>
+        <title>Burma Sailing | Charter & Packages</title>
+        <meta name="description" content="Explore Burma Sailing's charter and package options — honeymoon island escapes, 4-island day trips, island hopping by sea gypsy wooden boat, and private boat charters in the Mergui Archipelago." />
+        <meta name="keywords" content="Myanmar yacht charter, Mergui Archipelago packages, island hopping Myanmar, honeymoon sailing Myanmar, Burma Sailing packages" />
+        <meta property="og:title" content="Burma Sailing | Charter & Packages" />
+        <meta property="og:description" content="Curated island experiences in the Mergui Archipelago — from romantic escapes to adventure charters." />
+        <meta property="og:type" content="website" />
+      </Helmet>
       <h1 className="text-3xl font-semibold">Charter &amp; Packages</h1>
       <p className="text-muted-foreground">
         Choose from flexible itineraries, luxury packages, and bespoke private

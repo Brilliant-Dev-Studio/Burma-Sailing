@@ -7,7 +7,10 @@ import Destinations from './pages/Destinations'
 import Gallery from './pages/Gallery'
 import Home from './pages/Home'
 import Services from './pages/Services'
+import NotFound from './pages/NotFound'
 import { Footer, Header } from './components'
+import CustomCursor from './components/CustomCursor'
+import { useLenis } from './hooks/useLenis'
 
 function AnimatedRoutes() {
   const location = useLocation()
@@ -22,6 +25,7 @@ function AnimatedRoutes() {
         <Route path="/destinations" element={<Destinations />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </AnimatePresence>
   )
@@ -30,16 +34,18 @@ function AnimatedRoutes() {
 
 
 export default function App() {
+  useLenis()
+
   return (
- <>
-    <div className="min-h-screen bg-background px-2 flex flex-col">
-      <Header />
-      <main className="mx-auto w-full pt-[72px] flex-1">
-        <AnimatedRoutes />
-      </main>
-     
-    </div>
-    <Footer />
- </>
+    <>
+      <CustomCursor />
+      <div className="min-h-screen bg-background px-2 flex flex-col">
+        <Header />
+        <main className="mx-auto w-full pt-[72px] flex-1">
+          <AnimatedRoutes />
+        </main>
+      </div>
+      <Footer />
+    </>
   )
 }
