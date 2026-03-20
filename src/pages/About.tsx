@@ -23,9 +23,9 @@ const stagger = (gap: number, delayChildren = 0) => ({
 
 const stripImages = [
   { src: '/IMG_2671.JPG', caption: 'Island Anchorage' },
-  { src: '/interiro.jpg', caption: 'On Deck' },
+  { src: 'https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983758/viber_image_2026-03-19_08-56-54-243_nhitjg.jpg', caption: 'On Deck' },
   { src: '/IMG_2674.JPG', caption: 'Remote Waters' },
-  { src: '/IMG_2668.JPG', caption: 'Crew Life' },
+  { src: 'https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983743/viber_image_2026-03-19_09-10-09-093_obs4dr.jpg', caption: 'Crew Life' },
 ]
 
 const services = [
@@ -39,6 +39,13 @@ const services = [
 ]
 
 export default function About() {
+  const heroRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress: heroScroll } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  })
+  const heroImgY = useTransform(heroScroll, [0, 1], ['0%', '28%'])
+
   const mergуiRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress: merguiScroll } = useScroll({
     target: mergуiRef,
@@ -62,31 +69,45 @@ export default function About() {
         <meta property="og:description" content="Your trusted local partner for sailing the Mergui Archipelago. Deep regional knowledge, professional support." />
         <meta property="og:type" content="website" />
       </Helmet>
-      {/* ── Hero Video ── */}
-      <div className="h-[84svh] rounded-b-[4px] overflow-hidden relative">
-        <video
-          autoPlay muted loop playsInline preload="auto"
-          className="w-full h-full object-cover"
-          onError={() => console.error('About hero video failed to load.')}
+      {/* ── Hero (parallax) ── */}
+      <div
+        ref={heroRef}
+        className="h-[84svh] rounded-b-[4px] overflow-hidden relative"
+      >
+        {/* Parallax image */}
+        <motion.div
+          className="absolute inset-x-0 will-change-transform"
+          style={{ y: heroImgY, top: 0, height: '130%' }}
         >
-          <source src="/videos/aboutus.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40" />
+          <img
+            src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983724/viber_image_2026-03-19_09-03-29-052_jgbcej.jpg"
+            alt="Burma Sailing — Mergui Archipelago"
+            className="w-full h-full object-cover object-center"
+            fetchPriority="high"
+          />
+        </motion.div>
+
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60" />
+
+        {/* Text */}
         <motion.div
           className="absolute bottom-[50px] left-[4%] md:left-[6%] lg:left-[8%] text-white max-w-[90%] md:max-w-[60%] lg:max-w-[50%]"
           initial="hidden"
           animate="visible"
           variants={stagger(0.14, 0.08)}
         >
-          <motion.p className="mb-3 text-sm tracking-wide" variants={fadeUp}>
+          <motion.p
+            className="mb-3 text-[11px] md:text-[12px] font-semibold uppercase tracking-[0.22em] text-white/60"
+            variants={fadeUp}
+          >
             Burma Sailing
           </motion.p>
           <motion.p
-            className="text-[24px] md:text-[34px] lg:text-[42px] font-[500] leading-snug"
+            className="text-[26px] md:text-[36px] lg:text-[46px] font-[500] leading-snug"
             variants={fadeUp}
           >
-            Your Trusted Passage to the Mergui Archipelago and Yacht Agent
-            Expedition Specialist In the Mergui Archipelago
+            Your Trusted Passage to the Mergui Archipelago
           </motion.p>
           <motion.a
             href="/contact"
@@ -227,21 +248,21 @@ export default function About() {
             className="col-span-2 overflow-hidden rounded-2xl h-[115px] md:h-[163px] lg:h-[202px]"
             variants={fadeUp}
           >
-            <img src="/IMG_2675.JPG" alt="Sailing life 2"
+            <img src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773993976/viber_image_2026-03-19_09-00-24-481_w0aimx.jpg" alt="Sailing life 2"
               className="w-full h-full object-cover hover:scale-[1.05] transition-transform duration-700 ease-out" />
           </motion.div>
           <motion.div
             className="col-span-1 overflow-hidden rounded-2xl h-[115px] md:h-[163px] lg:h-[202px]"
             variants={fadeUp}
           >
-            <img src="/IMG_2669.JPG" alt="Sailing life 3"
+            <img src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983727/viber_image_2026-03-19_09-03-29-845_tjezxp.jpg" alt="Sailing life 3"
               className="w-full h-full object-cover hover:scale-[1.05] transition-transform duration-700 ease-out" />
           </motion.div>
           <motion.div
             className="col-span-1 overflow-hidden rounded-2xl h-[115px] md:h-[163px] lg:h-[202px]"
             variants={fadeUp}
           >
-            <img src="/IMG_2670.JPG" alt="Sailing life 4"
+            <img src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983740/viber_image_2026-03-19_09-05-58-623_ioqfxj.jpg" alt="Sailing life 4"
               className="w-full h-full object-cover hover:scale-[1.05] transition-transform duration-700 ease-out" />
           </motion.div>
         </div>

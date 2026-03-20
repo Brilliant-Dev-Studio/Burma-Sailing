@@ -156,6 +156,24 @@ const Footer = () => {
             </a>
           </div>
         </div>
+
+        {/* Powered by */}
+        <div className="mt-5 flex items-center justify-center opacity-30 hover:opacity-60 transition-opacity duration-300">
+          <a
+            href="https://brilliantdevstudio.online/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2"
+          >
+            <span className="text-[11px] tracking-widest uppercase text-slate-400">Powered by</span>
+            <img
+              src="/powerby.png"
+              alt="Brilliant Dev Studio"
+              className="h-[18px] w-auto grayscale"
+              draggable={false}
+            />
+          </a>
+        </div>
       </div>
     </footer>
   );

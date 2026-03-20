@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
+import { galleryImages } from '../lib/gallery'
 
 const ease = [0.22, 1, 0.36, 1] as const
 
@@ -14,18 +15,22 @@ const stagger = (gap: number, delay = 0) => ({
   visible: { transition: { staggerChildren: gap, delayChildren: delay } },
 })
 
-const images = [
-  { src: '/IMG_2668.JPG', caption: 'Interiors & Details', category: 'Onboard' },
-  { src: '/IMG_2669.JPG', caption: 'Deck Moments',        category: 'Onboard' },
-  { src: '/IMG_2670.JPG', caption: 'Island Light',        category: 'Islands' },
-  { src: '/IMG_2671.JPG', caption: 'Island Anchorage',    category: 'Islands' },
-  { src: '/IMG_2672.JPG', caption: 'Mergui Waters',       category: 'Sailing' },
-  { src: '/IMG_2674.JPG', caption: 'Remote Passage',      category: 'Sailing' },
-  { src: '/IMG_2675.JPG', caption: 'Sailing Life',        category: 'Sailing' },
-  { src: '/interiro.jpg', caption: 'On Deck',             category: 'Onboard' },
-]
+// Map Cloudinary images to the shape Gallery expects
+const images = galleryImages.map((img, i) => ({
+  src:      img.url,
+  caption:  img.caption || `Photo ${i + 1}`,
+  category: img.category,
+}))
 
 const categories = ['All', 'Sailing', 'Islands', 'Onboard']
+
+/** Returns a 30 px-wide, heavily-blurred Cloudinary URL (loads in <100 ms). */
+function cloudinaryBlur(url: string): string | null {
+  const base = 'https://res.cloudinary.com/dvbgmlsvl/image/upload/'
+  if (!url.startsWith(base)) return null
+  const rest = url.slice(base.length).replace(/^v\d+\//, '')
+  return `${base}w_30,q_5,e_blur:800/${rest}`
+}
 
 const pageMotion = {
   initial: { opacity: 0 },
@@ -63,8 +68,17 @@ export default function Gallery() {
   const countFor = (cat: string) =>
     cat === 'All' ? images.length : images.filter((i) => i.category === cat).length
 
+  const pendingRef = useRef<string[]>([])
+  const rafRef     = useRef<number | null>(null)
+
   const markLoaded = useCallback((src: string) => {
-    setLoadedSet((prev) => new Set(prev).add(src))
+    pendingRef.current.push(src)
+    if (rafRef.current) return
+    rafRef.current = requestAnimationFrame(() => {
+      const batch = pendingRef.current.splice(0)
+      setLoadedSet((prev) => { const s = new Set(prev); batch.forEach((u) => s.add(u)); return s })
+      rafRef.current = null
+    })
   }, [])
 
   const closeLightbox = useCallback(() => setLightbox(null), [])
@@ -124,7 +138,7 @@ export default function Gallery() {
       >
         {/* Parallax image — taller than container so it has room to slide */}
         <motion.img
-          src="/IMG_2675.JPG"
+          src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983731/viber_image_2026-03-19_09-05-53-362_aqwiiq.jpg"
           alt="Gallery hero"
           style={{ y: heroImgY }}
           className="w-full h-[120%] object-cover object-center will-change-transform"
@@ -232,36 +246,52 @@ export default function Gallery() {
           <motion.div
             key={activeCategory}
             className="columns-2 md:columns-3 lg:columns-4 gap-3 space-y-3"
-            initial="hidden"
-            animate="visible"
-            variants={stagger(0.07, 0.05)}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.35, ease: 'easeOut' }}
           >
             {filtered.map((img, idx) => {
-              const loaded = loadedSet.has(img.src)
+              const loaded  = loadedSet.has(img.src)
+              const blurSrc = cloudinaryBlur(img.src)
               return (
-                <motion.div
+                <div
                   key={img.src}
-                  className="break-inside-avoid overflow-hidden rounded-xl cursor-pointer group relative"
-                  variants={fadeUp}
+                  className="break-inside-avoid rounded-xl cursor-pointer group relative overflow-hidden"
+                  // Only use a guessed aspect-ratio for non-Cloudinary images (no blur available)
+                  style={!loaded && !blurSrc ? { aspectRatio: idx % 2 === 0 ? '3/4' : '4/3' } : undefined}
                   onClick={() => setLightbox(idx)}
                 >
-                  {/* Skeleton shimmer */}
-                  {!loaded && (
-                    <div
-                      className="w-full bg-slate-100 rounded-xl animate-pulse"
-                      style={{ aspectRatio: idx % 3 === 0 ? '3/4' : idx % 3 === 1 ? '4/3' : '1/1' }}
+                  {/*
+                    Blur placeholder — same aspect ratio as the real image, loads in <100 ms.
+                    It lives in normal flow so it sets the container height correctly.
+                    Removed from DOM once the real image is ready (no layout shift because
+                    the real image rendered at the same width produces the same height).
+                  */}
+                  {!loaded && blurSrc && (
+                    <img
+                      src={blurSrc}
+                      alt=""
+                      aria-hidden
+                      className="w-full block rounded-xl"
                     />
                   )}
 
+                  {/* Shimmer sits on top of the placeholder */}
+                  {!loaded && (
+                    <div className="absolute inset-0 bg-slate-100/80 animate-pulse rounded-xl" />
+                  )}
+
+                  {/* Real image — absolute while loading, moves to normal flow once done */}
                   <img
                     src={img.src}
                     alt={img.caption}
-                    loading="lazy"
+                    loading={idx < 8 ? 'eager' : 'lazy'}
                     onLoad={() => markLoaded(img.src)}
                     className={[
-                      'w-full object-cover rounded-xl block transition-all duration-700 ease-out',
-                      'group-hover:brightness-90 group-hover:scale-[1.02]',
-                      loaded ? 'opacity-100' : 'opacity-0 absolute inset-0',
+                      'rounded-xl transition-opacity duration-500 group-hover:brightness-90',
+                      loaded
+                        ? 'w-full block opacity-100'
+                        : 'absolute inset-0 w-full h-full object-cover opacity-0',
                     ].join(' ')}
                   />
 
@@ -278,7 +308,7 @@ export default function Gallery() {
                       {idx + 1}/{filtered.length}
                     </span>
                   </div>
-                </motion.div>
+                </div>
               )
             })}
           </motion.div>

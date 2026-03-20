@@ -51,7 +51,7 @@ const packages = [
     title: 'Honeymoon Island\nDay Return',
     desc: "An intimate escape to one of the Archipelago's most secluded island shores. Perfect for couples seeking untouched beauty and absolute privacy.",
     highlights: ['Private island access', 'Full-day itinerary', 'Local guide included', 'Return transfer'],
-    img: '/IMG_2670.JPG',
+    img: 'https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773995357/IMG_2703_lpeawx.jpg',
   },
   {
     badge: (
@@ -73,7 +73,7 @@ const packages = [
     title: 'Island Hopping by\nSea Gypsy Boat',
     desc: 'Experience the Archipelago as it has been for centuries — aboard a traditional wooden Sea Gypsy vessel, navigating between islands with local knowledge at the helm.',
     highlights: ['Traditional wooden boat', 'Sea Gypsy culture', 'Multi-island route', 'Authentic experience'],
-    img: '/IMG_2672.JPG',
+    img: 'https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983756/viber_image_2026-03-20_08-30-49-219_pxdk4u.jpg',
   },
   {
     badge: (
@@ -85,7 +85,7 @@ const packages = [
     title: 'Private Boat\nRental & Charter',
     desc: 'Full vessel rental for independent exploration. Customise your route, duration, and pace — we handle all logistics, permits, and crew support.',
     highlights: ['Flexible itinerary', 'Crew & captain', 'All permits included', 'Custom duration'],
-    img: '/IMG_2674.JPG',
+    img: 'https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983729/viber_image_2026-03-19_09-03-30-685_tkdahn.jpg',
   },
 ]
 
@@ -98,7 +98,7 @@ function WaveLayer({ fillPct, isInView, delay }: { fillPct: number; isInView: bo
       animate={isInView ? { height: `${fillPct}%` } : { height: '0%' }}
       transition={{ duration: 1.9, delay: delay + 0.15, ease: [0.22, 1, 0.36, 1] }}
     >
-      {/* Wave 1 — forward */}
+      {/* Wave 1 — forward, lighter crest */}
       <motion.div
         className="absolute -top-4 left-0 h-8"
         style={{ width: '200%' }}
@@ -108,12 +108,12 @@ function WaveLayer({ fillPct, isInView, delay }: { fillPct: number; isInView: bo
         <svg width="100%" height="100%" viewBox="0 0 600 32" preserveAspectRatio="none">
           <path
             d="M0,16 C50,0 100,32 150,16 C200,0 250,32 300,16 C350,0 400,32 450,16 C500,0 550,32 600,16 L600,32 L0,32 Z"
-            fill="rgba(255,255,255,0.18)"
+            fill="rgba(125,211,252,0.45)"
           />
         </svg>
       </motion.div>
 
-      {/* Wave 2 — reverse, phase offset */}
+      {/* Wave 2 — reverse, deeper tone */}
       <motion.div
         className="absolute -top-2 left-0 h-6"
         style={{ width: '200%' }}
@@ -123,13 +123,13 @@ function WaveLayer({ fillPct, isInView, delay }: { fillPct: number; isInView: bo
         <svg width="100%" height="100%" viewBox="0 0 600 24" preserveAspectRatio="none">
           <path
             d="M0,12 C75,24 150,0 225,12 C300,24 375,0 450,12 C525,24 600,0 600,12 L600,24 L0,24 Z"
-            fill="rgba(255,255,255,0.09)"
+            fill="rgba(56,189,248,0.28)"
           />
         </svg>
       </motion.div>
 
-      {/* Solid water body beneath the waves */}
-      <div className="absolute inset-0 top-5 bg-white/[0.07]" />
+      {/* Solid water body — deep ocean blue */}
+      <div className="absolute inset-0 top-5" style={{ background: 'rgba(14,116,144,0.32)' }} />
     </motion.div>
   )
 }
@@ -159,14 +159,14 @@ function TideStatCard({
   return (
     <motion.div
       ref={ref}
-      className="flex-1 md:flex-none relative rounded-2xl border border-white/10 bg-white/5 px-6 md:px-8 py-7 text-center overflow-hidden"
+      className="flex-1 md:flex-none relative rounded-2xl border border-sky-400/20 bg-sky-950/30 px-6 md:px-8 py-7 text-center overflow-hidden"
       initial={{ opacity: 0, y: 24 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
       whileHover={{
         y: -5,
-        borderColor: 'rgba(255,255,255,0.3)',
-        boxShadow: '0 0 36px rgba(255,255,255,0.07)',
+        borderColor: 'rgba(125,211,252,0.45)',
+        boxShadow: '0 0 40px rgba(14,116,144,0.35)',
         transition: { duration: 0.25 },
       }}
     >
@@ -189,7 +189,7 @@ function TideStatCard({
       </div>
 
       {/* Ambient bottom glow */}
-      <div className="pointer-events-none absolute -bottom-4 left-1/2 -translate-x-1/2 h-10 w-20 rounded-full bg-sky-400/10 blur-2xl" />
+      <div className="pointer-events-none absolute -bottom-4 left-1/2 -translate-x-1/2 h-14 w-28 rounded-full bg-cyan-400/25 blur-2xl" />
     </motion.div>
   )
 }
@@ -243,7 +243,7 @@ export default function Services() {
         className="relative h-[84svh] overflow-hidden rounded-b-[4px]"
       >
         <motion.img
-          src="/IMG_2675.JPG"
+          src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773993970/viber_image_2026-03-19_08-58-20-077_vjrvvw.jpg"
           alt="Burma Sailing Services"
           style={{ y: heroImgY }}
           className="w-full h-[120%] object-cover object-center will-change-transform"
@@ -585,7 +585,7 @@ export default function Services() {
               style={{ y: ctaImgY, top: -70, bottom: -70 }}
             >
               <img
-                src="/IMG_2668.JPG"
+                src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983755/viber_image_2026-03-19_09-18-42-184_qn1xcy.jpg"
                 alt="Contact Burma Sailing"
                 className="w-full h-full object-cover"
               />

@@ -26,15 +26,32 @@ const allPages = [
 const Header = () => {
   const [isMenuOpen,     setIsMenuOpen]     = useState(false)
   const [dropdownOpen,   setDropdownOpen]   = useState(false)
+  const [isHidden,       setIsHidden]       = useState(false)
   const shouldReduceMotion                  = useReducedMotion()
   const { pathname }                        = useLocation()
   const closeTimer                          = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const lastScrollY                         = useRef(0)
 
   const isActive = (href: string) =>
     href === '/' ? pathname === '/' : pathname.startsWith(href)
 
   const openDropdown  = () => { if (closeTimer.current) clearTimeout(closeTimer.current); setDropdownOpen(true) }
   const closeDropdown = () => { closeTimer.current = setTimeout(() => setDropdownOpen(false), 120) }
+
+  // Hide on scroll down, show on scroll up (laptop only)
+  useEffect(() => {
+    const isLaptop = () => window.matchMedia('(min-width: 1024px)').matches
+    const onScroll = () => {
+      if (!isLaptop()) return
+      const y = window.scrollY
+      if (y < 80) { setIsHidden(false); lastScrollY.current = y; return }
+      if (y > lastScrollY.current + 6)  setIsHidden(true)
+      else if (y < lastScrollY.current - 6) setIsHidden(false)
+      lastScrollY.current = y
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   useEffect(() => {
     if (!isMenuOpen) return
@@ -73,7 +90,11 @@ const Header = () => {
 
   return (
     <>
-      <div className="fixed left-2 right-2 z-50 bg-white pt-2">
+      <motion.div
+        className="fixed left-2 right-2 z-50 bg-white pt-2"
+        animate={{ y: isHidden ? '-115%' : '0%' }}
+        transition={{ duration: shouldReduceMotion ? 0 : 0.35, ease: [0.22, 1, 0.36, 1] }}
+      >
         <header className="relative flex items-center justify-between rounded-[4px] border bg-white/70 px-[20px] py-[16px] lg:py-[20px] backdrop-blur supports-[backdrop-filter]:bg-white/50">
 
           {/* ── LEFT — Logo ── */}
@@ -203,7 +224,7 @@ const Header = () => {
           </div>
 
         </header>
-      </div>
+      </motion.div>
 
       {/* ── Mobile / Tablet dropdown menu ── */}
       <AnimatePresence initial={false}>

@@ -116,7 +116,7 @@ export default function Destinations() {
         className="relative h-[84svh] overflow-hidden rounded-b-[4px]"
       >
         <motion.img
-          src="/IMG_2671.JPG"
+          src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983725/viber_image_2026-03-19_09-03-29-187_gyceoe.jpg"
           alt="Mergui Archipelago"
           style={{ y: heroImgY }}
           className="w-full h-[120%] object-cover object-center will-change-transform"
@@ -201,7 +201,7 @@ export default function Destinations() {
               variants={fadeUp}
             >
               <img
-                src="/IMG_2672.JPG"
+                src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983756/viber_image_2026-03-20_09-12-14-022_skp73s.jpg"
                 alt="Mergui islands"
                 className="w-full h-full object-cover hover:scale-[1.03] transition-transform duration-700 ease-out"
               />
@@ -480,7 +480,7 @@ export default function Destinations() {
                 variants={fadeUp}
               >
                 <img
-                  src="/IMG_2675.JPG"
+                  src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773993970/viber_image_2026-03-19_08-58-20-077_vjrvvw.jpg"
                   alt="Mergui Archipelago"
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                 />
@@ -495,7 +495,7 @@ export default function Destinations() {
                 variants={fadeUp}
               >
                 <img
-                  src="/IMG_2670.JPG"
+                  src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773993970/viber_image_2026-03-19_08-58-19-806_twqczy.jpg"
                   alt="Island Light"
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                 />
@@ -509,7 +509,7 @@ export default function Destinations() {
                 variants={fadeUp}
               >
                 <img
-                  src="/IMG_2674.JPG"
+                  src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983728/viber_image_2026-03-19_09-03-30-596_s6k25j.jpg"
                   alt="Remote Passage"
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                 />
@@ -523,7 +523,7 @@ export default function Destinations() {
                 variants={fadeUp}
               >
                 <img
-                  src="/IMG_2669.JPG"
+                  src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983756/viber_image_2026-03-20_08-30-49-219_pxdk4u.jpg"
                   alt="Deck Moments"
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                 />

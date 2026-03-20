@@ -1,37 +1,84 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
+// HQ cached across SPA navigations — skip LQ on revisit
+const hqCached = new Set<string>()
+
+const VIDEO_PUBLIC_ID =
+  '0-02-06-1bf475a828eb15188c6d975111c04b66ce8a8654f8968dc34a42fbb0cfc92aa9_2217f6e8e35_qoxfys'
+const VIDEO_VERSION = 'v1773997431'
+const CLOUD = 'https://res.cloudinary.com/dvbgmlsvl/video/upload'
+
+// Full-quality URL
+const HQ_URL = `${CLOUD}/${VIDEO_VERSION}/${VIDEO_PUBLIC_ID}.mp4`
+// ~5 % file size — loads in 1-2 s, naturally blurry at container scale
+const LQ_URL = `${CLOUD}/q_20,w_480/${VIDEO_VERSION}/${VIDEO_PUBLIC_ID}.mp4`
+
 export const HeroSection = () => {
+  const [lqReady, setLqReady] = useState(false)
+  const [hqReady, setHqReady] = useState(() => hqCached.has(HQ_URL))
+  const videoLqRef = useRef<HTMLVideoElement>(null)
+  const videoRef   = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    // HQ already cached from a previous visit — skip LQ entirely
+    if (hqCached.has(HQ_URL)) { setHqReady(true); return }
+
+    const lq = videoLqRef.current
+    const hq = videoRef.current
+    if (!lq || !hq) return
+
+    const onLq = () => setLqReady(true)
+    const onHq = () => { hqCached.add(HQ_URL); setHqReady(true) }
+
+    lq.addEventListener('canplay', onLq, { once: true })
+    hq.addEventListener('canplay', onHq, { once: true })
+    return () => {
+      lq.removeEventListener('canplay', onLq)
+      hq.removeEventListener('canplay', onHq)
+    }
+  }, [])
+
   const previewImages = [
-    { src: "/IMG_2668.JPG",  alt: "Interiors & Details" },
-    { src: "/IMG_2669.JPG",  alt: "Deck Moments" },
-    { src: "/IMG_2670.JPG",  alt: "Island Light" },
+    { src: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983722/viber_image_2026-03-19_09-03-28-612_estxxi.jpg",  alt: "Interiors & Details" },
+    { src: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983743/viber_image_2026-03-19_09-10-09-093_obs4dr.jpg",  alt: "Deck Moments" },
+    { src: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773993972/viber_image_2026-03-19_08-58-20-037_rpvrnj.jpg",  alt: "Island Light" },
     { src: "/IMG_2671.JPG",  alt: "Journeys & Memories" },
-    { src: "/IMG_2672.JPG",  alt: "Open Waters" },
-    { src: "/IMG_2674.JPG",  alt: "Island Life" },
+    { src: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773993970/viber_image_2026-03-19_08-58-19-806_twqczy.jpg",  alt: "Open Waters" },
+    { src: "/IMG_2668.JPG",  alt: "Island Life" },
   ];
 
   const faqs = useMemo(
     () => [
       {
-        title: "What's included in a charter?",
+        title: "What does Burma Sailing actually do?",
         description:
-          "Your charter typically includes the yacht, crew, standard equipment, and a tailored itinerary. Optional add-ons (like premium catering or special activities) can be arranged.",
+          "We are a licensed yacht agency based in Kawthaung, Myanmar. We handle everything visiting yachts need — cruising permits, port clearance, crew visas, provisioning, fuel, and local route guidance across the Mergui Archipelago.",
       },
       {
-        title: "How far in advance should I book?",
+        title: "Where do I enter Myanmar by sea?",
         description:
-          "We recommend booking 2–6 weeks in advance for best availability. Peak seasons and larger groups may need more lead time.",
+          "The official entry port for visiting yachts is Kawthaung — the southernmost town in Myanmar, directly across from Ranong, Thailand. All clearance procedures are handled here before you proceed into the Archipelago.",
       },
       {
-        title: "Is it safe for families and first-time sailors?",
+        title: "Do I need a special permit to sail the Mergui Archipelago?",
         description:
-          "Yes. Safety is our priority—vessels are checked and supported by experienced staff. We can tailor routes and pace for families and beginners.",
+          "Yes. Foreign vessels require a Myanmar Cruising Permit issued through an authorised agent. Burma Sailing manages the full permit application on your behalf, coordinating with the relevant government departments.",
       },
       {
-        title: "What happens if the weather changes?",
+        title: "What is the best time of year to visit?",
         description:
-          "If conditions shift, our team adjusts the route for comfort and safety. We'll always communicate options clearly and keep the experience smooth.",
+          "The cool season (November – February) offers the most comfortable sailing with settled northeast winds, clear skies, and calm anchorages. The hot season (March – May) is still navigable; the rainy season (June – October) is generally avoided by cruising yachts.",
+      },
+      {
+        title: "How much notice do you need to arrange permits?",
+        description:
+          "We recommend contacting us at least 2 – 4 weeks before your intended arrival. Permit processing times vary by season, so earlier notice gives us the best chance to secure everything before you arrive.",
+      },
+      {
+        title: "What are the tidal conditions like in the region?",
+        description:
+          "Tidal awareness is essential here. The range at Kawthaung entry port reaches 3 m, while parts of the broader Archipelago can see up to 5 m — significantly larger than Phuket. Our team briefs every vessel on local tidal patterns, and the region offers excellent natural harbours for day and overnight anchorages.",
       },
     ],
     [],
@@ -146,12 +193,28 @@ export const HeroSection = () => {
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.6, ease }}
             >
+              {/* Base — dark bg so there's no white flash while LQ loads */}
+              <div className="absolute inset-0 bg-slate-900" />
+
+              {/* LQ video — loads in ~1-2 s, naturally blurry at this scale */}
+              {!hqReady && (
+                <video
+                  ref={videoLqRef}
+                  autoPlay muted loop playsInline preload="auto"
+                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${lqReady ? 'opacity-100' : 'opacity-0'}`}
+                >
+                  <source src={LQ_URL} type="video/mp4" />
+                </video>
+              )}
+
+              {/* HQ video — crossfades in on top once buffered */}
               <video
+                ref={videoRef}
                 autoPlay muted loop playsInline preload="auto"
-                className="w-full h-full object-cover"
-                onError={() => console.error("About video failed to load.")}
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${hqReady ? 'opacity-100' : 'opacity-0'}`}
+                onError={() => console.error('HQ video failed to load.')}
               >
-                <source src="/videos/aboutus.mp4" type="video/mp4" />
+                <source src={HQ_URL} type="video/mp4" />
               </video>
               <p className="absolute bottom-6 left-5 right-5 text-white text-[14px] md:text-[15px] leading-relaxed">
                 Sailing in this region is not like cruising in mainstream
@@ -516,7 +579,7 @@ export const HeroSection = () => {
                 style={{ y: ctaY, top: -70, bottom: -70 }}
               >
                 <img
-                  src="/IMG_2675.JPG"
+                  src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983753/viber_image_2026-03-19_09-18-41-452_d1kxbd.jpg"
                   alt="Ready to sail"
                   className="w-full h-full object-cover"
                 />
@@ -593,7 +656,7 @@ export const HeroSection = () => {
                     <svg className="h-3.5 w-3.5 fill-current shrink-0" viewBox="0 0 24 24">
                       <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                     </svg>
-                    hello@burmasailing.com
+                    info@burmasailing.com
                   </div>
                 </div>
                 <p className="text-[12px] text-white/25 italic">
