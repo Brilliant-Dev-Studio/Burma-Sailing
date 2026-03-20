@@ -1,0 +1,14 @@
+# Burma Sailing — robots.txt
+# https://www.burmasailing.online
+
+User-agent: *
+Allow: /
+
+# Block build artefacts and config files
+Disallow: /src/
+Disallow: /*.json$
+Disallow: /*.ts$
+Disallow: /*.tsx$
+
+# Sitemap location
+Sitemap: https://www.burmasailing.online/sitemap.xml

@@ -2,10 +2,106 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="apple-touch-icon" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>burmasailing</title>
+
+    <!-- ── Favicon ── -->
+    <link rel="icon"            type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon"                 href="/favicon.png" />
+
+    <!-- ── Primary SEO (overridden per-page by react-helmet-async) ── -->
+    <title>Burma Sailing | Yacht Agency — Mergui Archipelago, Myanmar</title>
+    <meta name="description"
+          content="Burma Sailing is a licensed yacht agency based in Kawthaung, Myanmar. We provide cruising permits, port clearance, provisioning, and local expertise for sailing the Mergui Archipelago." />
+    <meta name="keywords"
+          content="Burma Sailing, Myanmar sailing, Mergui Archipelago, yacht agency Kawthaung, cruising permit Myanmar, sailing Myanmar, Mergui sailing, yacht charter Myanmar" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author"  content="Burma Sailing" />
+    <link rel="canonical" href="https://www.burmasailing.online/" />
+
+    <!-- ── Open Graph ── -->
+    <meta property="og:type"        content="website" />
+    <meta property="og:site_name"   content="Burma Sailing" />
+    <meta property="og:url"         content="https://www.burmasailing.online/" />
+    <meta property="og:title"       content="Burma Sailing | Yacht Agency — Mergui Archipelago, Myanmar" />
+    <meta property="og:description" content="Licensed yacht agency in Kawthaung. Cruising permits, port clearance, provisioning, and local expertise for sailing Myanmar's Mergui Archipelago." />
+    <meta property="og:image"       content="https://www.burmasailing.online/IMG_2675.JPG" />
+    <meta property="og:image:width"  content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale"      content="en_US" />
+
+    <!-- ── Twitter Card ── -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content="Burma Sailing | Yacht Agency — Mergui Archipelago, Myanmar" />
+    <meta name="twitter:description" content="Licensed yacht agency in Kawthaung. Cruising permits, port clearance, provisioning, and local expertise for sailing Myanmar's Mergui Archipelago." />
+    <meta name="twitter:image"       content="https://www.burmasailing.online/IMG_2675.JPG" />
+
+    <!-- ── Theme color (browser chrome) ── -->
+    <meta name="theme-color" content="#0f172a" />
+
+    <!-- ── Structured Data: LocalBusiness + TouristAttraction ── -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "LocalBusiness",
+          "@id": "https://www.burmasailing.online/#business",
+          "name": "Burma Sailing",
+          "description": "Licensed yacht agency based in Kawthaung, Myanmar, specialising in sailing permits, port clearance, provisioning, and local guidance for the Mergui Archipelago.",
+          "url": "https://www.burmasailing.online",
+          "logo": "https://www.burmasailing.online/favicon.png",
+          "image": "https://www.burmasailing.online/IMG_2675.JPG",
+          "telephone": "",
+          "email": "info@burmasailing.com",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Kawthaung",
+            "addressCountry": "MM"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "9.9833",
+            "longitude": "98.5500"
+          },
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+            "opens": "08:00",
+            "closes": "18:00"
+          },
+          "sameAs": []
+        },
+        {
+          "@type": "TouristAttraction",
+          "@id": "https://www.burmasailing.online/#destination",
+          "name": "Mergui Archipelago Sailing",
+          "description": "Over 800 islands spanning 10,000 sq mi of pristine waters in southern Myanmar — one of Southeast Asia's last unspoiled cruising destinations.",
+          "url": "https://www.burmasailing.online/destinations",
+          "touristType": "Sailing, Yacht Charter, Adventure Travel",
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "11.5000",
+            "longitude": "98.2000"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.burmasailing.online/#website",
+          "url": "https://www.burmasailing.online",
+          "name": "Burma Sailing",
+          "description": "Licensed yacht agency for the Mergui Archipelago, Myanmar.",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://www.burmasailing.online/?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
