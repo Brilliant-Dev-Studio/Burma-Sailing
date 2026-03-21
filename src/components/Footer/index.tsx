@@ -138,19 +138,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col gap-3 border-t border-black/10 pt-6 text-[13px] text-slate-500 sm:flex-row sm:items-center sm:justify-between">
-          <p>
-            © {new Date().getFullYear()} Burma Sailing. All rights reserved.
-          </p>
-          <div className="flex gap-4">
-            <a className="hover:underline" href="/privacy">
-              Privacy
-            </a>
-            <a className="hover:underline" href="/terms">
-              Terms
-            </a>
-          </div>
-        </div>
+      
 
         {/* Powered by */}
         <div className="mt-5 flex items-center justify-center opacity-30 hover:opacity-60 transition-opacity duration-300">
