@@ -83,3 +83,89 @@ body {
   0%   { transform: translateX(-100%); }
   100% { transform: translateX(400%); }
 }
+
+/* Home testimonials — gentle horizontal drift on middle wave band */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes testimonial-wave-a {
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    50% { transform: translate3d(-2.8%, 0, 0); }
+  }
+  @keyframes testimonial-wave-b {
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    50% { transform: translate3d(2.6%, 0, 0); }
+  }
+  @keyframes testimonial-wave-c {
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    50% { transform: translate3d(-2.2%, 0, 0); }
+  }
+}
+
+.testimonial-wave-a {
+  animation: testimonial-wave-a 22s ease-in-out infinite;
+}
+.testimonial-wave-b {
+  animation: testimonial-wave-b 28s ease-in-out infinite;
+}
+.testimonial-wave-c {
+  animation: testimonial-wave-c 25s ease-in-out infinite;
+  animation-delay: -5s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonial-wave-a,
+  .testimonial-wave-b,
+  .testimonial-wave-c {
+    animation: none;
+  }
+}
+
+/* Testimonials — infinite horizontal marquee (duplicate track, translate -50%) */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes testimonial-marquee-scroll {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+}
+
+.testimonial-marquee-track {
+  display: flex;
+  width: max-content;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .testimonial-marquee-wrap:hover .testimonial-marquee-track {
+    animation-play-state: paused;
+  }
+
+  .testimonial-marquee-wrap .testimonial-marquee-track {
+    animation: testimonial-marquee-scroll 80s linear infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonial-marquee-wrap .testimonial-marquee-track {
+    animation: none;
+  }
+}
+
+/* Soft fade at left/right so marquee doesn’t feel “cut” */
+.testimonial-marquee-clip {
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 2.5%,
+    #000 97.5%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 2.5%,
+    #000 97.5%,
+    transparent
+  );
+}

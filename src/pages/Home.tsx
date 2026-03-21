@@ -35,7 +35,7 @@ export default function Home() {
         <meta name="twitter:description" content="Your trusted passage to the Mergui Archipelago. Expert yacht agency services in southern Myanmar." />
         <meta name="twitter:image" content={SITE_OG_IMAGE} />
       </Helmet>
-     <HeroSection />
+      <HeroSection />
     </motion.section>
   )
 }

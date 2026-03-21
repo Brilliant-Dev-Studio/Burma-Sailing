@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import HomeTestimonialsSection from "@/components/HomeTestimonialsSection";
 
 // HQ cached across SPA navigations — skip LQ on revisit
 const hqCached = new Set<string>()
@@ -512,8 +513,10 @@ export const HeroSection = () => {
         </div>
       </section>
 
-      {/* ── Gallery ── */}
-      <section className="mt-[100px] md:mt-[120px] px-3 md:px-6 lg:px-8">
+      <HomeTestimonialsSection />
+
+      {/* ── Gallery ── (testimonials sit just above — keep modest top gap) */}
+      <section className="mt-12 md:mt-16 px-3 md:px-6 lg:px-8">
         <div className="mx-auto max-w-screen-xl">
           <motion.div
             className="flex items-end justify-between gap-4"
