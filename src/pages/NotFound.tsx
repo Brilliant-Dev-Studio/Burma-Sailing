@@ -22,6 +22,7 @@ export default function NotFound() {
     >
       <Helmet>
         <title>Burma Sailing | Page Not Found</title>
+        <meta name="robots" content="noindex, follow" />
         <meta name="description" content="Oops — this page doesn't exist. Navigate back to Burma Sailing and explore the Mergui Archipelago." />
       </Helmet>
       {/* Background image */}

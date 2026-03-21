@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import { Helmet } from 'react-helmet-async'
+import { SITE_OG_IMAGE, canonicalUrl } from '@/lib/siteConfig'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
 const pageMotion = {
@@ -63,11 +64,19 @@ export default function About() {
     >
       <Helmet>
         <title>Burma Sailing | About Us</title>
+        <link rel="canonical" href={canonicalUrl('/about')} />
         <meta name="description" content="Learn about Burma Sailing — a licensed yacht agency based in Kawthaung, specialising in sailing permits, logistics, and local guidance for the Mergui Archipelago." />
         <meta name="keywords" content="about Burma Sailing, yacht agent Kawthaung, Mergui Archipelago sailing, Myanmar yacht services" />
+        <meta property="og:url" content={canonicalUrl('/about')} />
         <meta property="og:title" content="Burma Sailing | About Us" />
         <meta property="og:description" content="Your trusted local partner for sailing the Mergui Archipelago. Deep regional knowledge, professional support." />
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Burma Sailing" />
+        <meta property="og:image" content={SITE_OG_IMAGE} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Burma Sailing | About Us" />
+        <meta name="twitter:description" content="Your trusted local partner for sailing the Mergui Archipelago. Deep regional knowledge, professional support." />
+        <meta name="twitter:image" content={SITE_OG_IMAGE} />
       </Helmet>
       {/* ── Hero (parallax) ── */}
       <div
@@ -170,7 +179,7 @@ export default function About() {
               style={{ y: merguiY, top: -70, bottom: -70 }}
             >
               <img
-                src="/IMG_2672.JPG"
+                src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983758/viber_image_2026-03-19_08-56-54-243_nhitjg.jpg"
                 alt="Mergui Archipelago sailing"
                 className="w-full h-full object-cover"
               />
@@ -241,7 +250,7 @@ export default function About() {
             className="col-span-1 row-span-2 overflow-hidden rounded-2xl h-[240px] md:h-[340px] lg:h-[420px]"
             variants={fadeUp}
           >
-            <img src="/IMG_2668.JPG" alt="Sailing life 1"
+            <img src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774075394/9d4c2e21-2468-424f-b496-676c2b78c963_wtjnzt.jpg" alt="Sailing life 1"
               className="w-full h-full object-cover hover:scale-[1.05] transition-transform duration-700 ease-out" />
           </motion.div>
           <motion.div

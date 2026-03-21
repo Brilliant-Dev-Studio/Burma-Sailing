@@ -16,6 +16,31 @@ export const galleryImages: GalleryImage[] = [
     category: "Sailing",
   },
   {
+    url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774075394/d566b5fc-6771-4216-bebc-70d4055779c3_plzprg.jpg",
+    caption: "",
+    category: "Islands",
+  },
+  {
+    url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774075394/3abed6e5-a294-43a7-812a-86d08d94064b_ci0mqq.jpg",
+    caption: "",
+    category: "Onboard",
+  },
+  {
+    url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774074441/5ab9fc9c-c5a7-4cc1-8e0b-febfdc224300_sxhxbi.jpg",
+    caption: "",
+    category: "Onboard",
+  },
+  {
+    url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774074441/203f230b-92f2-46a3-94ca-aba668eeedb6_izk1rm.jpg",
+    caption: "",
+    category: "Onboard",
+  },
+  {
+    url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774074441/5ab9fc9c-c5a7-4cc1-8e0b-febfdc224300_sxhxbi.jpg",
+    caption: "",
+    category: "Onboard",
+  },
+  {
     url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773993978/viber_image_2026-03-19_09-00-26-594_dub4nt.jpg",
     caption: "",
     category: "Sailing",
@@ -516,3 +541,14 @@ export const galleryImages: GalleryImage[] = [
     category: "Islands",
   },
 ];
+
+
+
+
+"Develop the notification screen and render base on noti type"
+"Develop the notification items and icons"
+"Test the notification brocast endpoint in frontend and check the error "
+"Refector the My booking tab section and make code solid"
+"Open the android simulatior and run the android app"
+"Debug the android google auth error and check the issue"
+"Check the developmode and production mode in google for auth"

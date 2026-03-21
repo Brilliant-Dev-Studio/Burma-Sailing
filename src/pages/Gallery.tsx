@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
+import { SITE_OG_IMAGE, canonicalUrl } from '@/lib/siteConfig'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { galleryImages } from '../lib/gallery'
 
@@ -122,11 +123,19 @@ export default function Gallery() {
     >
       <Helmet>
         <title>Burma Sailing | Gallery</title>
+        <link rel="canonical" href={canonicalUrl('/gallery')} />
         <meta name="description" content="Browse photos from Burma Sailing voyages — onboard life, island anchorages, and open waters of the Mergui Archipelago in southern Myanmar." />
         <meta name="keywords" content="Burma Sailing gallery, Mergui Archipelago photos, Myanmar sailing images, sailing photography Myanmar" />
+        <meta property="og:url" content={canonicalUrl('/gallery')} />
         <meta property="og:title" content="Burma Sailing | Gallery" />
         <meta property="og:description" content="A glimpse of life onboard — interiors, island moments, and the quiet luxury of sailing the Mergui Archipelago." />
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Burma Sailing" />
+        <meta property="og:image" content={SITE_OG_IMAGE} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Burma Sailing | Gallery" />
+        <meta name="twitter:description" content="A glimpse of life onboard — interiors, island moments, and the quiet luxury of sailing the Mergui Archipelago." />
+        <meta name="twitter:image" content={SITE_OG_IMAGE} />
       </Helmet>
       {/* ── Hero Banner ── */}
       <motion.div

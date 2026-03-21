@@ -50,7 +50,7 @@ const Footer = () => {
                 <Instagram className="h-5 w-5" />
               </a>
               <a
-                href="https://tiktok.com/@burmasailing"
+                href="https://www.tiktok.com/@burma.sailing"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="TikTok"
@@ -118,17 +118,17 @@ const Footer = () => {
                   <p>Kawthaung, Myanmar • Mergui Archipelago</p>
                   <a
                     className="block w-fit font-medium text-slate-900 hover:underline"
-                    href="mailto:info@burmasailing.com"
+                    href="mailto:burmasailingtour@gmail.com"
                   >
-                    info@burmasailing.com
+                    burmasailingtour@gmail.com
                   </a>
                   <a
                     className="block w-fit font-medium text-slate-900 hover:underline"
-                    href="https://wa.me/95912345678"
+                    href="https://wa.me/959250886927"
                     target="_blank"
                     rel="noreferrer"
                   >
-                    WhatsApp / Viber: +95 912 345 678
+                    WhatsApp: +959 250 886 927 · Viber: +959 669 642 013
                   </a>
 
                   <a

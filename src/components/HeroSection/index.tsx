@@ -4,40 +4,55 @@ import { motion, useScroll, useTransform } from "framer-motion";
 // HQ cached across SPA navigations — skip LQ on revisit
 const hqCached = new Set<string>()
 
+const CLOUD = 'https://res.cloudinary.com/dvbgmlsvl/video/upload'
+
+// Hero video (new high-res clip)
+const HERO_PUBLIC_ID = '1773887089358273_szckun'
+const HERO_VERSION  = 'v1774076397'
+const HERO_HQ_URL   = `${CLOUD}/w_1920,q_auto:best/${HERO_VERSION}/${HERO_PUBLIC_ID}.mp4`
+const HERO_LQ_URL   = `${CLOUD}/w_720,q_38/${HERO_VERSION}/${HERO_PUBLIC_ID}.mp4`
+// Mobile hero: video shown in a card (~half width of screen) — sharper than full-bleed upscale
+const HERO_MOBILE_HQ_URL = `${CLOUD}/w_960,q_auto:good/${HERO_VERSION}/${HERO_PUBLIC_ID}.mp4`
+const HERO_MOBILE_LQ_URL = `${CLOUD}/w_520,q_42/${HERO_VERSION}/${HERO_PUBLIC_ID}.mp4`
+
+// About-section video
 const VIDEO_PUBLIC_ID =
   '0-02-06-1bf475a828eb15188c6d975111c04b66ce8a8654f8968dc34a42fbb0cfc92aa9_2217f6e8e35_qoxfys'
 const VIDEO_VERSION = 'v1773997431'
-const CLOUD = 'https://res.cloudinary.com/dvbgmlsvl/video/upload'
-
 // Full-quality URL
 const HQ_URL = `${CLOUD}/${VIDEO_VERSION}/${VIDEO_PUBLIC_ID}.mp4`
-// ~5 % file size — loads in 1-2 s, naturally blurry at container scale
-const LQ_URL = `${CLOUD}/q_20,w_480/${VIDEO_VERSION}/${VIDEO_PUBLIC_ID}.mp4`
+// Medium-quality placeholder — acceptable visual while HQ buffers
+const LQ_URL = `${CLOUD}/q_40,w_854/${VIDEO_VERSION}/${VIDEO_PUBLIC_ID}.mp4`
 
 export const HeroSection = () => {
+  // ── Hero video state ──────────────────────────────────────────────────────
+  const [heroLqReady, setHeroLqReady] = useState(false)
+  const [heroHqReady, setHeroHqReady] = useState(
+    () => hqCached.has(HERO_HQ_URL) || hqCached.has(HERO_MOBILE_HQ_URL),
+  )
+  const heroLqRef = useRef<HTMLVideoElement>(null)
+  const heroHqRef = useRef<HTMLVideoElement>(null)
+
+  // ── About-section video state ─────────────────────────────────────────────
   const [lqReady, setLqReady] = useState(false)
   const [hqReady, setHqReady] = useState(() => hqCached.has(HQ_URL))
   const videoLqRef = useRef<HTMLVideoElement>(null)
   const videoRef   = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
-    // HQ already cached from a previous visit — skip LQ entirely
-    if (hqCached.has(HQ_URL)) { setHqReady(true); return }
-
-    const lq = videoLqRef.current
-    const hq = videoRef.current
-    if (!lq || !hq) return
-
-    const onLq = () => setLqReady(true)
-    const onHq = () => { hqCached.add(HQ_URL); setHqReady(true) }
-
-    lq.addEventListener('canplay', onLq, { once: true })
-    hq.addEventListener('canplay', onHq, { once: true })
-    return () => {
-      lq.removeEventListener('canplay', onLq)
-      hq.removeEventListener('canplay', onHq)
+    if (heroHqRef.current && heroHqRef.current.readyState >= 3) {
+      hqCached.add(HERO_MOBILE_HQ_URL)
+      setHeroHqReady(true)
     }
+    if (heroLqRef.current && heroLqRef.current.readyState >= 3) setHeroLqReady(true)
+    const hq = videoRef.current
+    const lq = videoLqRef.current
+    if (hq && hq.readyState >= 3) { hqCached.add(HQ_URL); setHqReady(true) }
+    if (lq && lq.readyState >= 3) setLqReady(true)
   }, [])
+
+  const handleLqCanPlay = () => setLqReady(true)
+  const handleHqCanPlay = () => { hqCached.add(HQ_URL); setHqReady(true) }
 
   const previewImages = [
     { src: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983722/viber_image_2026-03-19_09-03-28-612_estxxi.jpg",  alt: "Interiors & Details" },
@@ -45,7 +60,7 @@ export const HeroSection = () => {
     { src: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773993972/viber_image_2026-03-19_08-58-20-037_rpvrnj.jpg",  alt: "Island Light" },
     { src: "/IMG_2671.JPG",  alt: "Journeys & Memories" },
     { src: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773993970/viber_image_2026-03-19_08-58-19-806_twqczy.jpg",  alt: "Open Waters" },
-    { src: "/IMG_2668.JPG",  alt: "Island Life" },
+    { src: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774074441/203f230b-92f2-46a3-94ca-aba668eeedb6_izk1rm.jpg",  alt: "Crew Life" },
   ];
 
   const faqs = useMemo(
@@ -113,37 +128,300 @@ export const HeroSection = () => {
 
   return (
     <div>
-      {/* ── Hero Video ── */}
-      <div className="h-[84svh] rounded-b-[4px] overflow-hidden relative">
-        <video
-          autoPlay muted loop playsInline preload="auto"
-          className="w-full h-full object-cover"
-          onError={() => console.error("Hero video failed to load.")}
-        >
-          <source src="/videos/home.MP4" type="video/mp4" />
-        </video>
+      <style>{`
+        @keyframes waveFlow1 { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        @keyframes waveFlow2 { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        .hero-wave-layer { will-change: transform; }
+      `}</style>
+      {/* ── Hero — Bento Grid ── */}
 
+      {/* Mobile: text + bento-style media (sharp video in card, not full-bleed) + wave */}
+      <div className="lg:hidden relative overflow-hidden bg-white pb-14">
         <motion.div
-          className="absolute bottom-[50px] left-[3%] text-white max-w-[90%] md:left-[5%] md:max-w-[60%] lg:left-[6%] lg:max-w-[50%] xl:left-[8%] xl:max-w-[44%]"
+          className="px-4 pt-8 pb-5 text-slate-900"
           initial="hidden"
           animate="visible"
-          variants={stagger(0.14, 0.08)}
+          variants={stagger(0.11, 0.06)}
         >
-          <motion.p className="mb-3 text-sm md:text-[13px] tracking-wide" variants={fadeUp}>
-            Burma Sailing
+          <motion.p className="text-[11px] uppercase tracking-[0.2em] text-slate-400 font-medium" variants={fadeUp}>
+            Kawthaung, Myanmar
           </motion.p>
-          <motion.p className="text-2xl md:text-3xl lg:text-[36px] xl:text-[42px] leading-snug font-[500]" variants={fadeUp}>
-            Your Trusted Passage to the Mergui Archipelago and Yacht Agent
-            Expedition Specialist In the Mergui Archipelago
+          <motion.h1 className="mt-3 text-[28px] sm:text-[32px] font-[600] leading-[1.12]" variants={fadeUp}>
+            Your Trusted Passage to the Mergui Archipelago
+          </motion.h1>
+          <motion.p className="mt-4 text-[14px] leading-relaxed text-slate-500 max-w-[40ch]" variants={fadeUp}>
+            Licensed yacht agency — permits, clearance, guides, and local support for the Mergui Archipelago.
           </motion.p>
-          <motion.a
-            href="/contact"
-            className="mt-8 inline-flex h-12 items-center rounded-full bg-white px-8 text-[15px] font-semibold text-black hover:bg-white/90 transition-colors"
-            variants={fadeUp}
-          >
-            Contact Us
-          </motion.a>
+          <motion.div className="mt-6 flex flex-wrap items-center gap-2.5" variants={fadeUp}>
+            <a href="/contact"
+              className="inline-flex h-11 items-center rounded-full bg-slate-900 px-6 text-[14px] font-semibold text-white"
+            >Contact Us</a>
+            <a href="/services"
+              className="inline-flex h-11 items-center rounded-full border border-slate-200 px-6 text-[14px] text-slate-600"
+            >Services</a>
+          </motion.div>
+          <motion.div className="mt-8 flex flex-wrap gap-6 border-t border-slate-100 pt-6" variants={fadeUp}>
+            {[
+              { value: '800+', label: 'Islands' },
+              { value: '10,000 sq mi', label: 'Waters' },
+              { value: 'Kawthaung', label: 'Entry port' },
+            ].map((s) => (
+              <div key={s.label}>
+                <p className="text-[17px] font-[600] text-slate-900 leading-none">{s.value}</p>
+                <p className="mt-1 text-[10px] uppercase tracking-[0.12em] text-slate-400">{s.label}</p>
+              </div>
+            ))}
+          </motion.div>
         </motion.div>
+
+        {/* Media grid — video stays small on screen = reads sharper */}
+        <div className="px-3 pb-1">
+          <div className="mx-auto grid max-w-lg grid-cols-2 gap-2 sm:max-w-none sm:px-1">
+            <div className="relative col-span-2 h-[210px] overflow-hidden rounded-xl bg-slate-100 shadow-[0_2px_16px_rgba(0,0,0,0.1)] sm:h-[230px]">
+              {!heroHqReady && (
+                <video
+                  ref={heroLqRef}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="auto"
+                  onCanPlay={() => setHeroLqReady(true)}
+                  className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${heroLqReady ? 'opacity-100' : 'opacity-0'}`}
+                >
+                  <source src={HERO_MOBILE_LQ_URL} type="video/mp4" />
+                </video>
+              )}
+              <video
+                ref={heroHqRef}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="auto"
+                onCanPlay={() => {
+                  hqCached.add(HERO_MOBILE_HQ_URL)
+                  setHeroHqReady(true)
+                }}
+                onError={() => {
+                  if (!heroHqReady) setHeroLqReady(true)
+                }}
+                className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${heroHqReady ? 'opacity-100' : 'opacity-0'}`}
+              >
+                <source src={HERO_MOBILE_HQ_URL} type="video/mp4" />
+              </video>
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/25 to-transparent" />
+            </div>
+            {[
+              { src: 'https://res.cloudinary.com/dvbgmlsvl/image/upload/w_420,q_auto,f_auto/v1773983722/viber_image_2026-03-19_09-03-28-612_estxxi.jpg', alt: 'Islands' },
+              { src: 'https://res.cloudinary.com/dvbgmlsvl/image/upload/w_420,q_auto,f_auto/v1773993978/viber_image_2026-03-19_09-00-26-594_dub4nt.jpg', alt: 'Sailing' },
+              { src: 'https://res.cloudinary.com/dvbgmlsvl/image/upload/w_420,q_auto,f_auto/v1773993972/viber_image_2026-03-19_08-58-20-037_rpvrnj.jpg', alt: 'Island light' },
+              { src: 'https://res.cloudinary.com/dvbgmlsvl/image/upload/w_420,q_auto,f_auto/v1773983753/viber_image_2026-03-19_09-18-41-452_d1kxbd.jpg', alt: 'Coast' },
+            ].map((img) => (
+              <div
+                key={img.src}
+                className="relative h-[108px] overflow-hidden rounded-xl bg-slate-100 shadow-sm sm:h-[118px]"
+              >
+                <img src={img.src} alt={img.alt} className="h-full w-full object-cover" loading="lazy" />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom tint + wave */}
+        <div
+          className="pointer-events-none absolute bottom-0 left-0 right-0 z-[1] h-[88px]"
+          style={{ background: 'linear-gradient(to top, rgba(203,213,225,0.18) 0%, rgba(219,234,254,0.28) 50%, transparent 100%)' }}
+        />
+        <div className="absolute bottom-0 left-0 right-0 z-[2] h-[70px] overflow-hidden pointer-events-none [filter:drop-shadow(0_-2px_12px_rgba(0,0,0,0.08))]">
+          <div className="hero-wave-layer" style={{ animation: 'waveFlow1 6.5s linear infinite', width: '200%', position: 'absolute', bottom: 0, left: 0 }}>
+            <svg viewBox="0 0 2880 65" preserveAspectRatio="none" style={{ width: '100%', height: '62px', display: 'block' }}>
+              <path d="M0,32 C360,65 720,0 1080,32 C1440,65 1800,0 2160,32 C2520,65 2750,10 2880,32 L2880,65 L0,65 Z" fill="white" fillOpacity="0.62"/>
+            </svg>
+          </div>
+          <div className="hero-wave-layer" style={{ animation: 'waveFlow2 4.5s linear infinite reverse', width: '200%', position: 'absolute', bottom: 0, left: 0 }}>
+            <svg viewBox="0 0 2880 65" preserveAspectRatio="none" style={{ width: '100%', height: '62px', display: 'block' }}>
+              <path d="M0,45 C480,15 960,60 1440,40 C1920,20 2400,55 2880,45 L2880,65 L0,65 Z" fill="white" fillOpacity="0.96"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop (lg+): Split hero — text left + bento grid right */}
+      <div className="hidden lg:flex min-h-[92svh] items-stretch relative overflow-hidden bg-white pb-16">
+
+        {/* Left — Text panel */}
+        <div className="relative z-10 flex flex-col justify-center px-10 xl:px-16 py-20 lg:w-[42%] xl:w-[40%] shrink-0">
+          <motion.div initial="hidden" animate="visible" variants={stagger(0.12, 0.06)}>
+
+            <motion.p className="text-[12px] uppercase tracking-[0.2em] text-slate-400" variants={fadeUp}>
+              Kawthaung, Myanmar
+            </motion.p>
+
+            <motion.h1
+              className="mt-4 text-[38px] xl:text-[48px] font-[600] leading-[1.1] text-slate-900"
+              variants={fadeUp}
+            >
+              Your Trusted Passage to the Mergui Archipelago
+            </motion.h1>
+
+            <motion.p
+              className="mt-6 text-[15px] xl:text-[16px] leading-relaxed text-slate-500 max-w-[36ch]"
+              variants={fadeUp}
+            >
+              We are a licensed yacht agency based in Kawthaung. We handle
+              permits, clearance, guides, and everything your vessel needs
+              to sail the Mergui Archipelago.
+            </motion.p>
+
+            <motion.div className="mt-8 flex items-center gap-3" variants={fadeUp}>
+              <a href="/contact"
+                className="inline-flex h-11 items-center rounded-full bg-slate-900 px-7 text-[14px] font-semibold text-white hover:bg-slate-800 transition-colors"
+              >Contact Us</a>
+              <a href="/services"
+                className="inline-flex h-11 items-center rounded-full border border-slate-200 px-7 text-[14px] text-slate-600 hover:bg-slate-50 transition-colors"
+              >Our Services</a>
+            </motion.div>
+
+            <motion.div
+              className="mt-12 pt-8 border-t border-slate-100 flex items-center gap-10"
+              variants={fadeUp}
+            >
+              {[
+                { value: '800+', label: 'Islands' },
+                { value: '10,000 sq mi', label: 'of waters' },
+                { value: 'Kawthaung', label: 'Entry port' },
+              ].map((s) => (
+                <div key={s.label}>
+                  <p className="text-[18px] xl:text-[20px] font-[600] text-slate-900 leading-none">{s.value}</p>
+                  <p className="mt-1 text-[11px] text-slate-400">{s.label}</p>
+                </div>
+              ))}
+            </motion.div>
+
+          </motion.div>
+        </div>
+
+        {/* Thin divider */}
+        <div className="absolute top-[15%] bottom-[20%] w-px bg-slate-100 z-20 pointer-events-none" style={{ left: '41%' }} />
+
+        {/* Right — Bento Grid (4 cols) */}
+        <div className="relative z-10 flex-1 p-4 xl:p-6 flex items-center">
+          <motion.div
+            className="w-full grid gap-2.5"
+            style={{ gridTemplateColumns: 'repeat(4, 1fr)' }}
+            initial="hidden"
+            animate="visible"
+            variants={stagger(0.07, 0.25)}
+          >
+            {/* Video — col 1-2, row 1-2 */}
+            <motion.div
+              className="relative overflow-hidden rounded-xl shadow-[0_2px_20px_rgba(0,0,0,0.13)]"
+              style={{ gridColumn: '1 / 3', gridRow: '1 / 3', height: '440px' }}
+              variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } } }}
+            >
+              <div className="absolute inset-0 bg-slate-100" />
+              {!heroHqReady && (
+                <video autoPlay muted loop playsInline preload="auto"
+                  onCanPlay={() => setHeroLqReady(true)}
+                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${heroLqReady ? 'opacity-100' : 'opacity-0'}`}
+                >
+                  <source src={HERO_LQ_URL} type="video/mp4" />
+                </video>
+              )}
+              <video autoPlay muted loop playsInline preload="auto"
+                onCanPlay={() => { hqCached.add(HERO_HQ_URL); setHeroHqReady(true) }}
+                onError={() => { if (!heroHqReady) setHeroLqReady(true) }}
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${heroHqReady ? 'opacity-100' : 'opacity-0'}`}
+              >
+                <source src={HERO_HQ_URL} type="video/mp4" />
+              </video>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+            </motion.div>
+
+            {/* Img A — col 3, row 1 */}
+            <motion.div className="relative overflow-hidden rounded-xl shadow-[0_2px_14px_rgba(0,0,0,0.10)]"
+              style={{ gridColumn: '3', gridRow: '1', height: '214px' }}
+              variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } } }}
+            >
+              <img src="https://res.cloudinary.com/dvbgmlsvl/image/upload/w_500,q_auto,f_auto/v1773983722/viber_image_2026-03-19_09-03-28-612_estxxi.jpg"
+                alt="Mergui Islands" className="w-full h-full object-cover" />
+            </motion.div>
+
+            {/* Img B — col 4, row 1 */}
+            <motion.div className="relative overflow-hidden rounded-xl shadow-[0_2px_14px_rgba(0,0,0,0.10)]"
+              style={{ gridColumn: '4', gridRow: '1', height: '214px' }}
+              variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } } }}
+            >
+              <img src="https://res.cloudinary.com/dvbgmlsvl/image/upload/w_500,q_auto,f_auto/v1773993978/viber_image_2026-03-19_09-00-26-594_dub4nt.jpg"
+                alt="Sailing" className="w-full h-full object-cover" />
+            </motion.div>
+
+            {/* Img C — col 3, row 2 */}
+            <motion.div className="relative overflow-hidden rounded-xl shadow-[0_2px_14px_rgba(0,0,0,0.10)]"
+              style={{ gridColumn: '3', gridRow: '2', height: '214px' }}
+              variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } } }}
+            >
+              <img src="https://res.cloudinary.com/dvbgmlsvl/image/upload/w_500,q_auto,f_auto/v1773993972/viber_image_2026-03-19_08-58-20-037_rpvrnj.jpg"
+                alt="Island light" className="w-full h-full object-cover" />
+            </motion.div>
+
+            {/* Img D — col 4, row 2 */}
+            <motion.div className="relative overflow-hidden rounded-xl shadow-[0_2px_14px_rgba(0,0,0,0.10)]"
+              style={{ gridColumn: '4', gridRow: '2', height: '214px' }}
+              variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } } }}
+            >
+              <img src="https://res.cloudinary.com/dvbgmlsvl/image/upload/w_500,q_auto,f_auto/v1773983756/viber_image_2026-03-20_08-30-44-471_visy4t.jpg"
+                alt="Islands" className="w-full h-full object-cover" />
+            </motion.div>
+
+            {/* Img E — col 1, row 3 */}
+            <motion.div className="relative overflow-hidden rounded-xl shadow-[0_2px_14px_rgba(0,0,0,0.10)]"
+              style={{ gridColumn: '1', gridRow: '3', height: '158px' }}
+              variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } } }}
+            >
+              <img src="https://res.cloudinary.com/dvbgmlsvl/image/upload/w_500,q_auto,f_auto/v1773983743/viber_image_2026-03-19_09-10-09-093_obs4dr.jpg"
+                alt="Sailing" className="w-full h-full object-cover" />
+            </motion.div>
+
+            {/* Img F — col 2-3, row 3 */}
+            <motion.div className="relative overflow-hidden rounded-xl shadow-[0_2px_14px_rgba(0,0,0,0.10)]"
+              style={{ gridColumn: '2 / 4', gridRow: '3', height: '158px' }}
+              variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } } }}
+            >
+              <img src="https://res.cloudinary.com/dvbgmlsvl/image/upload/w_800,q_auto,f_auto/v1774074441/203f230b-92f2-46a3-94ca-aba668eeedb6_izk1rm.jpg"
+                alt="Onboard" className="w-full h-full object-cover" />
+            </motion.div>
+
+            {/* Img G — col 4, row 3 */}
+            <motion.div className="relative overflow-hidden rounded-xl shadow-[0_2px_14px_rgba(0,0,0,0.10)]"
+              style={{ gridColumn: '4', gridRow: '3', height: '158px' }}
+              variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } } }}
+            >
+              <img src="https://res.cloudinary.com/dvbgmlsvl/image/upload/w_500,q_auto,f_auto/v1773983753/viber_image_2026-03-19_09-18-41-452_d1kxbd.jpg"
+                alt="Islands" className="w-full h-full object-cover" />
+            </motion.div>
+          </motion.div>
+        </div>
+
+        {/* Bottom tint — soft contrast so wave reads on white (not loud) */}
+        <div className="absolute bottom-0 left-0 right-0 h-[120px] z-20 pointer-events-none"
+          style={{ background: 'linear-gradient(to top, rgba(203,213,225,0.22) 0%, rgba(219,234,254,0.38) 45%, transparent 100%)' }} />
+
+        {/* Animated wave */}
+        <div className="absolute bottom-0 left-0 right-0 h-[84px] z-30 overflow-hidden pointer-events-none [filter:drop-shadow(0_-1px_10px_rgba(15,23,42,0.06))]">
+          <div className="hero-wave-layer" style={{ animation: 'waveFlow1 8s linear infinite', width: '200%', position: 'absolute', bottom: 0, left: 0 }}>
+            <svg viewBox="0 0 2880 80" preserveAspectRatio="none" style={{ width: '100%', height: '76px', display: 'block' }}>
+              <path d="M0,38 C240,76 480,4 720,38 C960,72 1200,8 1440,38 C1680,68 1920,4 2160,38 C2400,72 2640,8 2880,38 L2880,80 L0,80 Z" fill="white" fillOpacity="0.7"/>
+            </svg>
+          </div>
+          <div className="hero-wave-layer" style={{ animation: 'waveFlow2 5.2s linear infinite reverse', width: '200%', position: 'absolute', bottom: 0, left: 0 }}>
+            <svg viewBox="0 0 2880 80" preserveAspectRatio="none" style={{ width: '100%', height: '76px', display: 'block' }}>
+              <path d="M0,52 C360,18 720,68 1080,48 C1440,28 1800,62 2160,44 C2520,24 2750,58 2880,52 L2880,80 L0,80 Z" fill="white" fillOpacity="0.98"/>
+            </svg>
+          </div>
+        </div>
+
       </div>
 
       {/* ── About Us ── */}
@@ -196,23 +474,29 @@ export const HeroSection = () => {
               {/* Base — dark bg so there's no white flash while LQ loads */}
               <div className="absolute inset-0 bg-slate-900" />
 
-              {/* LQ video — loads in ~1-2 s, naturally blurry at this scale */}
+              {/* LQ video — placeholder while HQ buffers */}
               {!hqReady && (
                 <video
                   ref={videoLqRef}
                   autoPlay muted loop playsInline preload="auto"
+                  onCanPlay={handleLqCanPlay}
                   className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${lqReady ? 'opacity-100' : 'opacity-0'}`}
                 >
                   <source src={LQ_URL} type="video/mp4" />
                 </video>
               )}
 
-              {/* HQ video — crossfades in on top once buffered */}
+              {/* HQ video — always loading in background, fades in when ready */}
               <video
                 ref={videoRef}
                 autoPlay muted loop playsInline preload="auto"
+                onCanPlay={handleHqCanPlay}
+                onError={() => {
+                  // HQ failed — keep LQ visible as fallback
+                  console.error('HQ video failed to load.')
+                  if (!hqReady) setLqReady(true)
+                }}
                 className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${hqReady ? 'opacity-100' : 'opacity-0'}`}
-                onError={() => console.error('HQ video failed to load.')}
               >
                 <source src={HQ_URL} type="video/mp4" />
               </video>
@@ -374,8 +658,8 @@ export const HeroSection = () => {
             {/* Left — image */}
             <motion.div className="relative overflow-hidden" variants={fadeUp}>
               <img
-                src="/IMG_2672.JPG"
-                alt="Mergui sailing"
+                src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774074441/5ab9fc9c-c5a7-4cc1-8e0b-febfdc224300_sxhxbi.jpg"
+                alt="Mergui Archipelago — 800+ islands"
                 className="w-full h-full object-cover transition-transform duration-[1400ms] ease-out hover:scale-[1.04]"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-black/15" />
@@ -627,7 +911,7 @@ export const HeroSection = () => {
                   Contact Us Now
                 </a>
                 <a
-                  href="https://wa.me/959123456789"
+                  href="https://wa.me/959250886927"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/30 px-8 text-[14px] font-medium text-white hover:bg-white/10 transition-colors"
@@ -656,7 +940,7 @@ export const HeroSection = () => {
                     <svg className="h-3.5 w-3.5 fill-current shrink-0" viewBox="0 0 24 24">
                       <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                     </svg>
-                    info@burmasailing.com
+                    burmasailingtour@gmail.com
                   </div>
                 </div>
                 <p className="text-[12px] text-white/25 italic">

@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import { Helmet } from 'react-helmet-async'
+import { SITE_OG_IMAGE, canonicalUrl } from '@/lib/siteConfig'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
 const ease = [0.22, 1, 0.36, 1] as const
@@ -30,12 +31,12 @@ const pageMotion = {
 }
 
 const CONTACT = {
-  email:     'info@burmasailing.com',
-  whatsapp:  '+95912345678',
-  viber:     '+95912345678',
+  email:     'burmasailingtour@gmail.com',
+  whatsapp:  '+959250886927',
+  viber:     '+959669642013',
   facebook:  'https://facebook.com/burmasailing',
   instagram: 'https://instagram.com/burmasailing',
-  tiktok:    'https://tiktok.com/@burmasailing',
+  tiktok:    'https://www.tiktok.com/@burma.sailing',
 }
 
 const directContacts = [
@@ -131,11 +132,19 @@ export default function Contact() {
     >
       <Helmet>
         <title>Burma Sailing | Contact Us</title>
+        <link rel="canonical" href={canonicalUrl('/contact')} />
         <meta name="description" content="Get in touch with Burma Sailing — email, WhatsApp, Viber, and social media. Based in Kawthaung, Myanmar. We help plan your voyage into the Mergui Archipelago." />
         <meta name="keywords" content="contact Burma Sailing, Burma Sailing WhatsApp, Kawthaung yacht agent contact, Myanmar sailing enquiry" />
+        <meta property="og:url" content={canonicalUrl('/contact')} />
         <meta property="og:title" content="Burma Sailing | Contact Us" />
         <meta property="og:description" content="Let us help you plan your voyage into Myanmar's hidden islands. Reach us via email, WhatsApp, or Viber." />
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Burma Sailing" />
+        <meta property="og:image" content={SITE_OG_IMAGE} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Burma Sailing | Contact Us" />
+        <meta name="twitter:description" content="Let us help you plan your voyage into Myanmar's hidden islands. Reach us via email, WhatsApp, or Viber." />
+        <meta name="twitter:image" content={SITE_OG_IMAGE} />
       </Helmet>
       {/* ── Header + Contact Cards (sequential cascade) ── */}
       <motion.div
@@ -286,7 +295,7 @@ export default function Contact() {
               style={{ y: bannerImgY, top: -70, bottom: -70 }}
             >
               <img
-                src="/IMG_2674.JPG"
+                src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774074442/8e8ebcb7-3fe0-4e7f-8a14-b17b267a61f5_uk4nws.jpg"
                 alt="Mergui Archipelago hidden islands"
                 className="w-full h-full object-cover"
               />
@@ -382,7 +391,7 @@ export default function Contact() {
           </motion.div>
 
         </div>
-      </motion.section>
+    </motion.section>
     </motion.div>
   )
 }

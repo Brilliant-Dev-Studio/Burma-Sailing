@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
+import { SITE_OG_IMAGE, canonicalUrl } from '@/lib/siteConfig'
 import {
   motion, useScroll, useTransform, AnimatePresence,
   useInView, useMotionValue, animate as fmAnimate,
@@ -51,7 +52,7 @@ const packages = [
     title: 'Honeymoon Island\nDay Return',
     desc: "An intimate escape to one of the Archipelago's most secluded island shores. Perfect for couples seeking untouched beauty and absolute privacy.",
     highlights: ['Private island access', 'Full-day itinerary', 'Local guide included', 'Return transfer'],
-    img: 'https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773995357/IMG_2703_lpeawx.jpg',
+    img:  'https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983756/viber_image_2026-03-20_08-30-49-219_pxdk4u.jpg',
   },
   {
     badge: (
@@ -62,7 +63,7 @@ const packages = [
     title: "Cock's Comb\n4 Islands Trip",
     desc: "An exhilarating day voyage covering four distinct islands around Cock's Comb — each with its own character, wildlife, and anchorages.",
     highlights: ['4 island stops', 'Snorkeling spots', 'Wildlife sightings', 'Full-day guided'],
-    img: '/IMG_2671.JPG',
+    img: 'https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983758/viber_image_2026-03-20_09-12-14-102_fgaouz.jpg',
   },
   {
     badge: (
@@ -73,7 +74,7 @@ const packages = [
     title: 'Island Hopping by\nSea Gypsy Boat',
     desc: 'Experience the Archipelago as it has been for centuries — aboard a traditional wooden Sea Gypsy vessel, navigating between islands with local knowledge at the helm.',
     highlights: ['Traditional wooden boat', 'Sea Gypsy culture', 'Multi-island route', 'Authentic experience'],
-    img: 'https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983756/viber_image_2026-03-20_08-30-49-219_pxdk4u.jpg',
+    img: 'https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773993976/viber_image_2026-03-19_09-00-26-080_oqjzth.jpg',
   },
   {
     badge: (
@@ -231,11 +232,19 @@ export default function Services() {
     >
       <Helmet>
         <title>Burma Sailing | Services</title>
+        <link rel="canonical" href={canonicalUrl('/services')} />
         <meta name="description" content="Burma Sailing offers complete yacht services in Myanmar — cruising permits, port clearance, licensed guides, itinerary planning, and charter packages in the Mergui Archipelago." />
         <meta name="keywords" content="Burma Sailing services, Myanmar cruising permits, Mergui charter, yacht logistics Myanmar, island hopping Myanmar" />
+        <meta property="og:url" content={canonicalUrl('/services')} />
         <meta property="og:title" content="Burma Sailing | Services" />
         <meta property="og:description" content="From permits to passage — complete yacht services for the Mergui Archipelago." />
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Burma Sailing" />
+        <meta property="og:image" content={SITE_OG_IMAGE} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Burma Sailing | Services" />
+        <meta name="twitter:description" content="From permits to passage — complete yacht services for the Mergui Archipelago." />
+        <meta name="twitter:image" content={SITE_OG_IMAGE} />
       </Helmet>
       {/* ── Hero (parallax) ── */}
       <div
@@ -566,7 +575,7 @@ export default function Services() {
             </div>
           </div>
         </div>
-      </motion.section>
+    </motion.section>
 
       {/* ── CTA Banner ── */}
       <section className="mt-[60px] md:mt-[80px] px-3 md:px-6 lg:px-8 mb-[80px] md:mb-[100px]">

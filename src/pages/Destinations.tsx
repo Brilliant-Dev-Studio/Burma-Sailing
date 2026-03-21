@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import { Helmet } from 'react-helmet-async'
+import { SITE_OG_IMAGE, canonicalUrl } from '@/lib/siteConfig'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
 const ease = [0.22, 1, 0.36, 1] as const
@@ -104,11 +105,19 @@ export default function Destinations() {
     >
       <Helmet>
         <title>Burma Sailing | Destinations</title>
+        <link rel="canonical" href={canonicalUrl('/destinations')} />
         <meta name="description" content="Discover the Mergui Archipelago — 800+ islands across 10,000 sq miles of pristine waters in southern Myanmar. Explore sailing routes, anchorages, and seasonal guides." />
         <meta name="keywords" content="Mergui Archipelago destinations, Myanmar sailing islands, Kawthaung sailing, remote anchorages Myanmar" />
+        <meta property="og:url" content={canonicalUrl('/destinations')} />
         <meta property="og:title" content="Burma Sailing | Destinations" />
         <meta property="og:description" content="Explore 800+ islands in the Mergui Archipelago — one of Southeast Asia's last untouched cruising grounds." />
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Burma Sailing" />
+        <meta property="og:image" content={SITE_OG_IMAGE} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Burma Sailing | Destinations" />
+        <meta name="twitter:description" content="Explore 800+ islands in the Mergui Archipelago — one of Southeast Asia's last untouched cruising grounds." />
+        <meta name="twitter:image" content={SITE_OG_IMAGE} />
       </Helmet>
       {/* ── Hero (parallax) ── */}
       <div
@@ -201,7 +210,7 @@ export default function Destinations() {
               variants={fadeUp}
             >
               <img
-                src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983756/viber_image_2026-03-20_09-12-14-022_skp73s.jpg"
+                src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774073668/viber_image_2026-03-21_11-30-44-725_t38qoq.jpg"
                 alt="Mergui islands"
                 className="w-full h-full object-cover hover:scale-[1.03] transition-transform duration-700 ease-out"
               />
@@ -412,7 +421,7 @@ export default function Destinations() {
               style={{ y: ctaImgY, top: -70, bottom: -70 }}
             >
               <img
-                src="/IMG_2668.JPG"
+                src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983756/viber_image_2026-03-19_09-18-42-233_dnjxdf.jpg"
                 alt="Sailing the Mergui Archipelago"
                 className="w-full h-full object-cover"
               />
