@@ -89,12 +89,7 @@ const Footer = () => {
                   <a className="block w-fit hover:underline" href="/services">
                     Services
                   </a>
-                  <a
-                    className="block w-fit hover:underline"
-                    href="/charter-packages"
-                  >
-                    Charter & Packages
-                  </a>
+                
                   <a
                     className="block w-fit hover:underline"
                     href="/destinations"
