@@ -6,7 +6,7 @@
 
   <!-- Home -->
   <url>
-    <loc>https://www.burmasailing.online/</loc>
+    <loc>https://www.burmasailing.info/</loc>
     <lastmod>2026-03-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -14,7 +14,7 @@
 
   <!-- About -->
   <url>
-    <loc>https://www.burmasailing.online/about</loc>
+    <loc>https://www.burmasailing.info/about</loc>
     <lastmod>2026-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -22,7 +22,7 @@
 
   <!-- Services -->
   <url>
-    <loc>https://www.burmasailing.online/services</loc>
+    <loc>https://www.burmasailing.info/services</loc>
     <lastmod>2026-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -30,7 +30,7 @@
 
   <!-- Destinations -->
   <url>
-    <loc>https://www.burmasailing.online/destinations</loc>
+    <loc>https://www.burmasailing.info/destinations</loc>
     <lastmod>2026-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -38,7 +38,7 @@
 
   <!-- Charter & Packages -->
   <url>
-    <loc>https://www.burmasailing.online/charter-packages</loc>
+    <loc>https://www.burmasailing.info/charter-packages</loc>
     <lastmod>2026-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -46,7 +46,7 @@
 
   <!-- Gallery -->
   <url>
-    <loc>https://www.burmasailing.online/gallery</loc>
+    <loc>https://www.burmasailing.info/gallery</loc>
     <lastmod>2026-03-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -54,7 +54,7 @@
 
   <!-- Contact -->
   <url>
-    <loc>https://www.burmasailing.online/contact</loc>
+    <loc>https://www.burmasailing.info/contact</loc>
     <lastmod>2026-03-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>

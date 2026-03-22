@@ -1,5 +1,5 @@
 # Burma Sailing — robots.txt
-# https://www.burmasailing.online
+# https://www.burmasailing.info
 
 User-agent: *
 Allow: /
@@ -11,4 +11,4 @@ Disallow: /*.ts$
 Disallow: /*.tsx$
 
 # Sitemap location
-Sitemap: https://www.burmasailing.online/sitemap.xml
+Sitemap: https://www.burmasailing.info/sitemap.xml
