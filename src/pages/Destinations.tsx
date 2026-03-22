@@ -195,6 +195,67 @@ export default function Destinations() {
         </div>
       </section>
 
+      {/* ── Lampi Marine National Park ── */}
+      <section className="mt-[70px] md:mt-[90px] px-3 md:px-6 lg:px-8">
+        <div className="mx-auto max-w-screen-xl rounded-2xl bg-gradient-to-b from-teal-50/50 to-sky-50/40 px-5 py-10 md:px-10 md:py-12 lg:px-12 lg:py-14">
+          <motion.div
+            className="grid gap-6 md:gap-8 md:grid-cols-2 lg:gap-14 lg:items-center"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            variants={stagger(0.12, 0)}
+          >
+            <motion.div className="flex flex-col justify-center md:order-1" variants={fadeUp}>
+              <p className="uppercase text-[13px] font-semibold tracking-[0.18em] text-slate-500">
+                Featured destination · Myanmar&apos;s first marine park
+              </p>
+              <h2 className="mt-3 text-[26px] md:text-[32px] lg:text-[38px] font-[600] leading-snug text-slate-900">
+                Lampi Marine National Park
+              </h2>
+              <p className="mt-4 text-[15px] md:text-[16px] leading-relaxed text-slate-600">
+                Myanmar&apos;s first marine national park protects a vast sweep of the southern Mergui
+                Archipelago — coral reefs, mangroves, and rainforest-covered islands that rank among the
+                region&apos;s most important refuges for marine life and coastal wildlife.
+              </p>
+              <p className="mt-4 text-[15px] md:text-[16px] leading-relaxed text-slate-600">
+                Centered on Lampi Island — the largest island in the southern archipelago — the park
+                offers quiet anchorages, jungle-backed beaches, and some of the most rewarding cruising
+                in Myanmar for those who value nature and responsible access.
+              </p>
+              <p className="mt-5 text-[15px] md:text-[16px] font-medium leading-relaxed text-slate-800">
+                Sail there with us — we handle permits, routing, and support from first enquiry to arrival.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <a
+                  href="/destinations/lampi-marine-national-park"
+                  className="inline-flex h-12 w-fit items-center justify-center rounded-full bg-teal-800 px-8 text-[14px] md:text-[15px] font-semibold text-white hover:bg-teal-900 transition-colors"
+                >
+                  Read full guide
+                </a>
+                <a
+                  href="/contact"
+                  className="inline-flex h-12 w-fit items-center justify-center rounded-full border border-slate-200 bg-white px-8 text-[14px] md:text-[15px] font-semibold text-slate-800 hover:bg-slate-50 transition-colors"
+                >
+                  Contact us
+                </a>
+              </div>
+            </motion.div>
+
+            <motion.div
+              className="overflow-hidden rounded-2xl h-[280px] md:h-[420px] lg:h-[480px] md:order-2"
+              variants={fadeUp}
+            >
+              <img
+                src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774172053/oikos-lampi-1_7_hshszz.jpg"
+                alt="Lampi Marine National Park, Mergui Archipelago"
+                className="h-full w-full object-cover hover:scale-[1.03] transition-transform duration-700 ease-out"
+                loading="lazy"
+              />
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ── Wildlife & Nature ── */}
       <section className="mt-[70px] md:mt-[90px] px-3 md:px-6 lg:px-8">
         <div className="mx-auto max-w-screen-xl">

@@ -10,6 +10,7 @@ const About           = lazy(() => import('./pages/About'))
 const Services        = lazy(() => import('./pages/Services'))
 const CharterPackages = lazy(() => import('./pages/CharterPackages'))
 const Destinations    = lazy(() => import('./pages/Destinations'))
+const LampiMarineNationalPark = lazy(() => import('./pages/LampiMarineNationalPark'))
 const Gallery         = lazy(() => import('./pages/Gallery'))
 const Contact         = lazy(() => import('./pages/Contact'))
 const NotFound        = lazy(() => import('./pages/NotFound'))
@@ -25,6 +26,7 @@ function AnimatedRoutes() {
           <Route path="/about"             element={<About />} />
           <Route path="/services"          element={<Services />} />
           <Route path="/charter-packages"  element={<CharterPackages />} />
+          <Route path="/destinations/lampi-marine-national-park" element={<LampiMarineNationalPark />} />
           <Route path="/destinations"      element={<Destinations />} />
           <Route path="/gallery"           element={<Gallery />} />
           <Route path="/contact"           element={<Contact />} />

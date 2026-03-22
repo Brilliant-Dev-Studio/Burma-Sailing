@@ -633,7 +633,7 @@ export const HeroSection = () => {
             viewport={{ once: true, amount: 0.35 }}
             variants={fadeUp}
           >
-            <img src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774074441/5ab9fc9c-c5a7-4cc1-8e0b-febfdc224300_sxhxbi.jpg" alt="Mergui sailing" className="h-full w-full object-cover" />
+            <img src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774170989/5ab9fc9c-c5a7-4cc1-8e0b-febfdc224300_2_nvhfdi.jpg" alt="Mergui sailing" className="h-full w-full object-cover" />
             <div className="absolute inset-0 bg-black/25 backdrop-blur-[1px]" />
             <div className="absolute top-8 left-6 right-[35%] md:left-10 md:top-10 text-white">
               <p className="uppercase text-[12px] md:text-[13px] font-semibold tracking-[0.18em]">Our Services</p>
@@ -661,7 +661,7 @@ export const HeroSection = () => {
             {/* Left — image */}
             <motion.div className="relative overflow-hidden" variants={fadeUp}>
               <img
-                src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774074441/5ab9fc9c-c5a7-4cc1-8e0b-febfdc224300_sxhxbi.jpg"
+                src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774170989/5ab9fc9c-c5a7-4cc1-8e0b-febfdc224300_2_nvhfdi.jpg"
                 alt="Mergui Archipelago — 800+ islands"
                 className="w-full h-full object-cover transition-transform duration-[1400ms] ease-out hover:scale-[1.04]"
               />

@@ -26,21 +26,6 @@ export const galleryImages: GalleryImage[] = [
     category: "Onboard",
   },
   {
-    url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774074441/5ab9fc9c-c5a7-4cc1-8e0b-febfdc224300_sxhxbi.jpg",
-    caption: "",
-    category: "Onboard",
-  },
-  {
-    url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774074441/203f230b-92f2-46a3-94ca-aba668eeedb6_izk1rm.jpg",
-    caption: "",
-    category: "Onboard",
-  },
-  {
-    url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774074441/5ab9fc9c-c5a7-4cc1-8e0b-febfdc224300_sxhxbi.jpg",
-    caption: "",
-    category: "Onboard",
-  },
-  {
     url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773993978/viber_image_2026-03-19_09-00-26-594_dub4nt.jpg",
     caption: "",
     category: "Sailing",
@@ -537,6 +522,136 @@ export const galleryImages: GalleryImage[] = [
   },
   {
     url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983719/viber_image_2026-03-19_09-03-27-505_sytocf.jpg",
+    caption: "",
+    category: "Islands",
+  },
+  {
+    url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774170965/f2ad14a7-b746-4682-9925-af411bbd7695_cb6bne.jpg",
+    caption: "",
+    category: "Sailing",
+  },
+  {
+    url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774170965/fee5c717-58b9-445d-b628-7c64ba31ad3f_ys8ceq.jpg",
+    caption: "",
+    category: "Islands",
+  },
+  {
+    url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774170964/e2c45463-d0d0-4db9-ab09-7a939fde1517_gkpzu2.jpg",
+    caption: "",
+    category: "Islands",
+  },
+  {
+    url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774170964/f6a64324-4bcc-48c4-96f8-72068d0547a6_thgagy.jpg",
+    caption: "",
+    category: "Islands",
+  },
+  {
+    url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774170962/c1ade7e7-211e-44dd-b612-8fc3bf1ff3bc_v3pcks.jpg",
+    caption: "",
+    category: "Islands",
+  },
+  {
+    url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774170965/ff5790b7-3636-4a0c-bb5c-306755a45130_imquqy.jpg",
+    caption: "",
+    category: "Islands",
+  },
+  {
+    url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774170963/d780ad80-1ebe-4d16-9dbb-8735b14e1be6_gnqnka.jpg",
+    caption: "",
+    category: "Sailing",
+  },
+  {
+    url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774170963/e658dad2-b386-4964-88c4-d7d3f80a6a9a_noapxw.jpg",
+    caption: "",
+    category: "Sailing",
+  },
+  {
+    url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774170962/c8e59049-35e4-4ebc-9643-a7f7a25408cb_ihtpkh.jpg",
+    caption: "",
+    category: "Sailing",
+  },
+  {
+    url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774170959/b59ddcfc-7de3-41a7-bc8d-7b6c18bf9cdd_hqgpar.jpg",
+    caption: "",
+    category: "Sailing",
+  },
+  {
+    url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774170952/6830393f-9d67-4bc2-a84d-e88afb9c9c59_l2jdlj.jpg",
+    caption: "",
+    category: "Sailing",
+  },
+  {
+    url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774170950/a412e763-5daa-4e90-8f4c-04475b6470a2_kelwni.jpg",
+    caption: "",
+    category: "Sailing",
+  },
+  {
+    url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774170927/392e8705-f8b3-4542-be26-7b05fb6fa640_u66qgd.jpg",
+    caption: "",
+    category: "Sailing",
+  },
+  {
+    url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774170927/21824db7-b647-4ad3-ad5f-0b254459a565_av4wsw.jpg",
+    caption: "",
+    category: "Sailing",
+  },
+  {
+    url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774170927/991cb749-d534-4c1f-aaec-b1ed75f60a5a_eziyxr.jpg",
+    caption: "",
+    category: "Sailing",
+  },
+  {
+    url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774170925/11667e73-7e86-4aa0-8a8a-5749ed4d33e8_vz06ry.jpg",
+    caption: "",
+    category: "Sailing",
+  },
+  {
+    url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774170926/83104a5b-6ce6-4215-befe-d875f0a5ac70_lsiouh.jpg",
+    caption: "",
+    category: "Islands",
+  },
+  {
+    url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774170925/8412e208-6ca5-46cb-8c83-fd37678c0933_gjr03c.jpg",
+    caption: "",
+    category: "Islands",
+  },
+  {
+    url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774170924/6993a791-bfaf-419e-ab7b-0c7cf2eaafab_dh5bjr.jpg",
+    caption: "",
+    category: "Islands",
+  },
+  {
+    url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774170925/07373b92-1c25-4825-80d1-c3886a4ab810_zjf7lv.jpg",
+    caption: "",
+    category: "Islands",
+  },
+  {
+    url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774170924/5119f69c-357e-4d1c-b6d1-db86a0134143_dpyk8c.jpg",
+    caption: "",
+    category: "Islands",
+  },
+  {
+    url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774170924/6b3174e8-b57b-45e5-ad7c-41e4531b0629_wtypvt.jpg",
+    caption: "",
+    category: "Islands",
+  },
+  {
+    url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774170924/03b9cebf-1ac0-4268-a854-04b525188035_utkbb0.jpg",
+    caption: "",
+    category: "Islands",
+  },
+  {
+    url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774170923/70aba0b0-3477-47f7-80f9-f1c08bcbf7ad_uauavq.jpg",
+    caption: "",
+    category: "Islands",
+  },
+  {
+    url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774170922/7bc75bf3-8559-4799-915f-e9441294a043_fxplvw.jpg",
+    caption: "",
+    category: "Islands",
+  },
+  {
+    url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774170922/3582cf53-abeb-4214-bb17-4c0779709736_ckrsp4.jpg",
     caption: "",
     category: "Islands",
   },
