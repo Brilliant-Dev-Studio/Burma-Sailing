@@ -1,8 +1,8 @@
 /** Production site URL — used for canonical & Open Graph */
 export const SITE_URL = 'https://www.burmasailing.info'
 
-/** Default share image (absolute URL) */
-export const SITE_OG_IMAGE = `${SITE_URL}/IMG_2675.JPG`
+/** Default share image — social preview (Open Graph / Twitter); public/favicon.png */
+export const SITE_OG_IMAGE = `${SITE_URL}/favicon.png`
 
 /**
  * Canonical URL for a path (e.g. "/about" → https://www.burmasailing.info/about)
