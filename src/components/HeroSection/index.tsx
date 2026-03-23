@@ -61,7 +61,7 @@ export const HeroSection = () => {
     { src: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773993972/viber_image_2026-03-19_08-58-20-037_rpvrnj.jpg",  alt: "Island Light" },
     { src: "/IMG_2671.JPG",  alt: "Journeys & Memories" },
     { src: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773993970/viber_image_2026-03-19_08-58-19-806_twqczy.jpg",  alt: "Open Waters" },
-    { src: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774074441/203f230b-92f2-46a3-94ca-aba668eeedb6_izk1rm.jpg",  alt: "Crew Life" },
+    { src: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774258652/203f230b-92f2-46a3-94ca-aba668eeedb6_3_g9u79n.jpg",  alt: "Crew Life" },
   ];
 
   const faqs = useMemo(
@@ -286,7 +286,7 @@ export const HeroSection = () => {
 
             <motion.div
               className="mt-12 pt-8 border-t border-slate-100 flex items-center gap-10"
-              variants={fadeUp}
+            variants={fadeUp}
             >
               {[
                 { value: '800+', label: 'Islands' },
@@ -402,7 +402,7 @@ export const HeroSection = () => {
               <img src="https://res.cloudinary.com/dvbgmlsvl/image/upload/w_500,q_auto,f_auto/v1773983753/viber_image_2026-03-19_09-18-41-452_d1kxbd.jpg"
                 alt="Islands" className="w-full h-full object-cover" />
             </motion.div>
-          </motion.div>
+        </motion.div>
         </div>
 
         {/* Bottom tint — soft contrast so wave reads on white (not loud) */}
@@ -431,27 +431,27 @@ export const HeroSection = () => {
           <div className="md:grid md:grid-cols-2 md:gap-12 lg:gap-20 md:items-start">
 
             {/* Left — text */}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.25 }}
-              variants={stagger(0.11, 0)}
-            >
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.25 }}
+          variants={stagger(0.11, 0)}
+        >
               <motion.p className="uppercase text-[13px] md:text-[14px] font-semibold tracking-[0.18em] text-slate-500" variants={fadeUp}>
-                Effortless • Adventurous • Premium
-              </motion.p>
+            Effortless • Adventurous • Premium
+          </motion.p>
               <motion.p className="mt-5 text-[32px] md:text-[38px] lg:text-[46px] xl:text-[52px] font-[500] leading-tight text-slate-900" variants={fadeUp}>
                 Empowering seamless exploration through expert local logistics
                 and deep regional knowledge.
-              </motion.p>
+          </motion.p>
               <motion.div variants={fadeUp} className="mt-8">
                 <a
                   href="/about"
                   className="inline-flex h-12 items-center rounded-full bg-black px-8 text-[15px] font-semibold text-white hover:bg-black/85 transition-colors"
                 >
-                  About Us
+              About Us
                 </a>
-              </motion.div>
+          </motion.div>
               <motion.p className="mt-8 text-[15px] md:text-[16px] leading-relaxed text-slate-600 max-w-[60ch]" variants={fadeUp}>
                 Burma Sailing is a dedicated yacht agency specializing in
                 supporting visiting sailing yachts and expedition vessels
@@ -460,8 +460,8 @@ export const HeroSection = () => {
                 experience, we act as the vital link between international
                 sailors and one of Southeast Asia's most remote and unspoiled
                 cruising destinations.
-              </motion.p>
-            </motion.div>
+          </motion.p>
+        </motion.div>
 
             {/* Right — video (visible md+) */}
             <motion.div
@@ -488,11 +488,11 @@ export const HeroSection = () => {
               )}
 
               {/* HQ video — always loading in background, fades in when ready */}
-              <video
+          <video
                 ref={videoRef}
                 autoPlay muted loop playsInline preload="auto"
                 onCanPlay={handleHqCanPlay}
-                onError={() => {
+            onError={() => {
                   // HQ failed — keep LQ visible as fallback
                   console.error('HQ video failed to load.')
                   if (!hqReady) setLqReady(true)
@@ -500,9 +500,9 @@ export const HeroSection = () => {
                 className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${hqReady ? 'opacity-100' : 'opacity-0'}`}
               >
                 <source src={HQ_URL} type="video/mp4" />
-              </video>
+          </video>
               <p className="absolute bottom-6 left-5 right-5 text-white text-[14px] md:text-[15px] leading-relaxed">
-                Sailing in this region is not like cruising in mainstream
+            Sailing in this region is not like cruising in mainstream
                 destinations. It requires trusted local expertise, careful
                 coordination, and an understanding of both the sea and the
                 system ashore.
@@ -518,57 +518,57 @@ export const HeroSection = () => {
       {/* ── Gallery ── (testimonials sit just above — keep modest top gap) */}
       <section className="mt-12 md:mt-16 px-3 md:px-6 lg:px-8">
         <div className="mx-auto max-w-screen-xl">
-          <motion.div
-            className="flex items-end justify-between gap-4"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.35 }}
-            variants={stagger(0.1, 0)}
-          >
-            <div>
-              <motion.p
-                className="uppercase text-[13px] font-semibold tracking-[0.18em] text-slate-500"
-                variants={fadeUp}
-              >
-                Gallery
-              </motion.p>
-              <motion.p
-                className="mt-3 text-[30px] md:text-[36px] lg:text-[42px] font-[600] leading-tight text-slate-900"
-                variants={fadeUp}
-              >
-                A glimpse of life onboard.
-              </motion.p>
-              <motion.p
-                className="mt-3 max-w-[52ch] text-[15px] leading-relaxed text-slate-600 hidden md:block"
-                variants={fadeUp}
-              >
-                Explore interiors, island moments, and the kind of quiet luxury
-                you only get at sea.
-              </motion.p>
-            </div>
-            <motion.a
-              href="/gallery"
-              className="inline-flex h-11 shrink-0 items-center justify-center rounded-full bg-black px-6 text-[14px] md:text-[15px] font-semibold text-white transition-colors hover:bg-black/90"
+        <motion.div
+          className="flex items-end justify-between gap-4"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.35 }}
+          variants={stagger(0.1, 0)}
+        >
+          <div>
+            <motion.p
+              className="uppercase text-[13px] font-semibold tracking-[0.18em] text-slate-500"
               variants={fadeUp}
             >
-              More
-            </motion.a>
-          </motion.div>
-
-          <motion.div
-            className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-12 md:gap-4"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.12 }}
-            variants={stagger(0.13, 0.12)}
+              Gallery
+            </motion.p>
+            <motion.p
+                className="mt-3 text-[30px] md:text-[36px] lg:text-[42px] font-[600] leading-tight text-slate-900"
+              variants={fadeUp}
+            >
+              A glimpse of life onboard.
+            </motion.p>
+            <motion.p
+                className="mt-3 max-w-[52ch] text-[15px] leading-relaxed text-slate-600 hidden md:block"
+              variants={fadeUp}
+            >
+              Explore interiors, island moments, and the kind of quiet luxury
+              you only get at sea.
+            </motion.p>
+          </div>
+          <motion.a
+            href="/gallery"
+              className="inline-flex h-11 shrink-0 items-center justify-center rounded-full bg-black px-6 text-[14px] md:text-[15px] font-semibold text-white transition-colors hover:bg-black/90"
+            variants={fadeUp}
           >
-            {previewImages.map((img, idx) => {
+            More
+          </motion.a>
+        </motion.div>
+
+        <motion.div
+          className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-12 md:gap-4"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.12 }}
+          variants={stagger(0.13, 0.12)}
+        >
+          {previewImages.map((img, idx) => {
               // 12-col grid layout:
               // Row 1: [0: col-7, row-span-2 tall] | [1: col-5]
               // Row 2: [0 cont.]                   | [2: col-2] [3: col-3]
               // Row 3: [4: col-4] [5: col-4] [6: col-4]
               // Row 4: [7: col-12 full-width]
-              const tileClass =
+            const tileClass =
                 idx === 0 ? "col-span-2 md:col-span-7 md:row-span-2"
                 : idx === 1 ? "col-span-1 md:col-span-5"
                 : idx === 2 ? "col-span-1 md:col-span-2"
@@ -578,7 +578,7 @@ export const HeroSection = () => {
                 : idx === 6 ? "col-span-1 md:col-span-4"
                 : "col-span-2 md:col-span-12";
 
-              const heightClass =
+            const heightClass =
                 idx === 0 ? "h-[380px] md:h-[540px] lg:h-[640px]"
                 : idx === 1 ? "h-[190px] md:h-[260px] lg:h-[310px]"
                 : idx === 2 ? "h-[190px] md:h-[260px] lg:h-[310px]"
@@ -590,34 +590,34 @@ export const HeroSection = () => {
 
               const caption = img.alt;
 
-              return (
-                <motion.a
-                  key={`${img.src}-${idx}`}
-                  href="/gallery"
-                  className={[
-                    "group relative overflow-hidden rounded-2xl border border-black/10 bg-white shadow-sm",
+            return (
+              <motion.a
+                key={`${img.src}-${idx}`}
+                href="/gallery"
+                className={[
+                  "group relative overflow-hidden rounded-2xl border border-black/10 bg-white shadow-sm",
                     "transition-shadow duration-300 hover:shadow-md",
-                    tileClass,
-                  ].join(" ")}
-                  variants={galleryItem}
-                >
-                  <div className={["relative w-full overflow-hidden", heightClass].join(" ")}>
-                    <img
-                      src={img.src}
-                      alt={img.alt}
-                      className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-100" />
-                    <div className="absolute bottom-4 left-4 right-4">
+                  tileClass,
+                ].join(" ")}
+                variants={galleryItem}
+              >
+                <div className={["relative w-full overflow-hidden", heightClass].join(" ")}>
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-100" />
+                  <div className="absolute bottom-4 left-4 right-4">
                       <p className="text-[14px] md:text-[15px] font-semibold text-white">{caption}</p>
                       <p className="mt-1 text-[12px] md:text-[13px] text-white/80">Open gallery</p>
                     </div>
-                  </div>
-                </motion.a>
-              );
-            })}
-          </motion.div>
+                </div>
+              </motion.a>
+            );
+          })}
+        </motion.div>
         </div>
       </section>
 
@@ -626,28 +626,28 @@ export const HeroSection = () => {
         <div className="mx-auto max-w-screen-xl">
 
           {/* Mobile / Tablet — full-bleed image card */}
-          <motion.div
+        <motion.div
             className="lg:hidden relative h-[420px] md:h-[500px] w-full overflow-hidden rounded-2xl"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.35 }}
-            variants={fadeUp}
-          >
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.35 }}
+          variants={fadeUp}
+        >
             <img src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774170989/5ab9fc9c-c5a7-4cc1-8e0b-febfdc224300_2_nvhfdi.jpg" alt="Mergui sailing" className="h-full w-full object-cover" />
             <div className="absolute inset-0 bg-black/25 backdrop-blur-[1px]" />
             <div className="absolute top-8 left-6 right-[35%] md:left-10 md:top-10 text-white">
               <p className="uppercase text-[12px] md:text-[13px] font-semibold tracking-[0.18em]">Our Services</p>
               <p className="mt-3 text-[26px] md:text-[34px] leading-snug font-[500] max-w-[18ch]">
                 Local Knowledge. Professional Support. Authentic Access.
-              </p>
-            </div>
-            <a
+            </p>
+          </div>
+          <a
               href="/services"
               className="absolute bottom-8 left-6 md:left-10 inline-flex h-11 items-center justify-center rounded-full bg-white px-7 text-[14px] font-semibold text-black hover:bg-white/90 transition-colors"
-            >
-              Explore Our Services
-            </a>
-          </motion.div>
+          >
+            Explore Our Services
+          </a>
+        </motion.div>
 
           {/* Laptop — split: image left + content right */}
           <motion.div
@@ -737,84 +737,84 @@ export const HeroSection = () => {
           <div className="lg:grid lg:grid-cols-[1fr_1.4fr] lg:gap-20 lg:items-start">
 
             {/* Left — heading */}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.35 }}
-              variants={stagger(0.1, 0)}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.35 }}
+          variants={stagger(0.1, 0)}
               className="lg:sticky lg:top-[100px]"
-            >
-              <motion.p
-                className="uppercase text-[13px] font-semibold tracking-[0.18em] text-slate-500"
-                variants={fadeUp}
-              >
-                FAQ
-              </motion.p>
-              <motion.h2
+        >
+          <motion.p
+            className="uppercase text-[13px] font-semibold tracking-[0.18em] text-slate-500"
+            variants={fadeUp}
+          >
+            FAQ
+          </motion.p>
+          <motion.h2
                 className="mt-3 text-[30px] md:text-[36px] lg:text-[40px] font-[600] leading-tight text-slate-900"
-                variants={fadeUp}
-              >
-                We deliver exceptional experiences on the water.
-              </motion.h2>
-              <motion.p
+            variants={fadeUp}
+          >
+            We deliver exceptional experiences on the water.
+          </motion.h2>
+          <motion.p
                 className="mt-4 text-[15px] md:text-[16px] leading-relaxed text-slate-600 max-w-[48ch]"
-                variants={fadeUp}
-              >
+            variants={fadeUp}
+          >
                 Our values shape every journey, every interaction, and every
                 detail we design.
-              </motion.p>
-            </motion.div>
+          </motion.p>
+        </motion.div>
 
             {/* Right — accordion */}
-            <motion.div
+        <motion.div
               className="mt-10 lg:mt-0 divide-y divide-black/10 rounded-xl border border-black/10 bg-white"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.08 }}
-              variants={stagger(0.09, 0.08)}
-            >
-              {faqs.map((faq, idx) => {
-                const isOpen = openFaqIndex === idx;
-                return (
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.08 }}
+          variants={stagger(0.09, 0.08)}
+        >
+          {faqs.map((faq, idx) => {
+            const isOpen = openFaqIndex === idx;
+            return (
                   <motion.div key={faq.title} className="px-5 py-5 md:px-7 md:py-6" variants={fadeUp}>
-                    <button
-                      type="button"
-                      className="flex w-full items-center justify-between gap-4 text-left"
+                <button
+                  type="button"
+                  className="flex w-full items-center justify-between gap-4 text-left"
                       onClick={() => setOpenFaqIndex((v) => (v === idx ? null : idx))}
-                      aria-expanded={isOpen}
-                    >
+                  aria-expanded={isOpen}
+                >
                       <span className="text-[17px] md:text-[19px] font-semibold text-slate-900">
-                        {faq.title}
-                      </span>
-                      <span
-                        className={[
+                    {faq.title}
+                  </span>
+                  <span
+                    className={[
                           "grid h-9 w-9 md:h-10 md:w-10 shrink-0 place-items-center rounded-full border border-black text-black",
-                          "transition-transform duration-200",
-                          isOpen ? "rotate-45" : "rotate-0",
-                        ].join(" ")}
-                        aria-hidden="true"
-                      >
+                      "transition-transform duration-200",
+                      isOpen ? "rotate-45" : "rotate-0",
+                    ].join(" ")}
+                    aria-hidden="true"
+                  >
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                           <path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                        </svg>
-                      </span>
-                    </button>
-                    <div
-                      className={[
-                        "grid transition-[grid-template-rows,opacity] duration-300 ease-out",
+                    </svg>
+                  </span>
+                </button>
+                <div
+                  className={[
+                    "grid transition-[grid-template-rows,opacity] duration-300 ease-out",
                         isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
-                      ].join(" ")}
-                    >
-                      <div className="overflow-hidden">
+                  ].join(" ")}
+                >
+                  <div className="overflow-hidden">
                         <p className="mt-3 text-[15px] md:text-[16px] leading-relaxed text-slate-600">
-                          {faq.description}
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </motion.div>
+                      {faq.description}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
+        </motion.div>
 
           </div>
         </div>
@@ -825,30 +825,30 @@ export const HeroSection = () => {
         <div className="mx-auto max-w-screen-xl">
 
           {/* Mobile / Tablet */}
-          <motion.div
+        <motion.div
             className="lg:hidden relative h-[460px] md:h-[540px] w-full overflow-hidden rounded-2xl"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={fadeUp}
-          >
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeUp}
+        >
             <img src="/IMG_2675.JPG" alt="Ready to sail" className="h-full w-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/55" />
             <div className="absolute top-8 left-6 right-[35%] md:left-10 md:top-12 text-white">
               <p className="uppercase text-[12px] md:text-[13px] font-semibold tracking-[0.18em]">
-                Ready to Make Waves?
-              </p>
+              Ready to Make Waves?
+            </p>
               <p className="mt-3 text-[26px] md:text-[34px] leading-snug font-[500] max-w-[20ch]">
-                Your perfect day on the water is just a few clicks away.
-              </p>
-            </div>
-            <a
+              Your perfect day on the water is just a few clicks away.
+            </p>
+          </div>
+          <a
               href="/contact"
               className="absolute bottom-8 left-6 md:left-10 inline-flex h-11 items-center justify-center rounded-full bg-white px-7 text-[14px] font-semibold text-black hover:bg-white/90 transition-colors"
-            >
-              Contact Us Now
-            </a>
-          </motion.div>
+          >
+            Contact Us Now
+          </a>
+        </motion.div>
 
           {/* Laptop — editorial full-width */}
           <motion.div

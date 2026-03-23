@@ -180,24 +180,119 @@ export default function Destinations() {
               <h2 className="mt-3 text-[30px] md:text-[38px] lg:text-[44px] font-[600] leading-tight text-slate-900">
                 Lying 180 km north of Phuket — closed to the world for over fifty years.
               </h2>
+              <p className="mt-5 text-[15px] md:text-[16px] leading-relaxed text-slate-600 lg:max-w-[34ch] xl:max-w-[36ch]">
+                <span lang="my" className="text-slate-800 font-medium">
+                  မြိတ်ကျွန်းစု
+                </span>{' '}
+                — the <strong className="font-semibold text-slate-800">Myeik Archipelago</strong>, often
+                called the <strong className="font-semibold text-slate-800">Mergui Archipelago</strong> on
+                charts — lies roughly on that bearing from Phuket across the Andaman Sea. For generations
+                it was a name on maps more than a place yachts could sail; those decades of closure helped
+                preserve the islands and seas you see today.
+              </p>
             </motion.div>
-            <motion.p
-              className="mt-5 lg:mt-0 text-[15px] md:text-[16px] leading-relaxed text-slate-600"
+            <motion.div
+              className="mt-5 lg:mt-0 space-y-5 text-[15px] md:text-[16px] leading-relaxed text-slate-600"
               variants={fadeUp}
             >
-              Comprising over eight hundred islands and covering an area of ten thousand square miles,
-              the Mergui Archipelago in southern Myanmar had, until January 1997, been closed to all
-              foreigners for over fifty years. This extraordinary area is totally untouched by modern
-              development — the majority of islands are densely forested and mountainous, with
-              impenetrable jungle meeting white sand beaches.
+              <p>
+                Comprising over eight hundred islands and covering an area of ten thousand square miles,
+                မြိတ်ကျွန်းစု — the Myeik or Mergui Archipelago in southern Myanmar — had, until January
+                1997, been closed to all foreigners for over fifty years. This extraordinary area is
+                totally untouched by modern development — the majority of islands are densely forested and
+                mountainous, with impenetrable jungle meeting white sand beaches.
+              </p>
+              <p>
+                Stretching along the Andaman Sea from the Thai border near Ranong to the deep south of
+                Myanmar, the archipelago forms one of the largest island groups in Southeast Asia. Many
+                peaks rise steeply from the water; sheltered bays, tidal channels, and long sand spits
+                create endless options for exploration — yet the region remains remarkably quiet compared
+                with mainstream cruising routes.
+              </p>
+              <p>
+                For visiting yachts, the journey begins at Kawthaung, the official port of entry. From
+                there, passages open northward through island chains where radar contacts are few and
+                horizons are defined by jungle silhouettes and turquoise shallows. Cruising here is as
+                much about preparation and permits as it is about weather windows and tidal awareness:
+                ranges can exceed what many crews are used to from Phuket or the Malaysian coast, and
+                local knowledge makes a measurable difference to safety and enjoyment.
+              </p>
+              <p>
+                Ashore and afloat, the archipelago is home to the Moken and other coastal communities
+                whose lives have long been tied to the sea. Villages appear sparingly along the coasts;
+                otherwise, nature dominates — hornbills over the canopy, reef life below the surface, and
+                nights so dark the Milky Way can feel within reach. It is a destination for sailors who
+                value space, silence, and a sense of having arrived somewhere that charts only partly
+                describe.
+              </p>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── Deeper context: geography & experience ── */}
+      <section className="mt-[56px] md:mt-[72px] px-3 md:px-6 lg:px-8">
+        <div className="mx-auto max-w-screen-xl">
+          <motion.div
+            className="rounded-2xl border border-slate-200/80 bg-gradient-to-br from-slate-50 via-white to-sky-50/30 px-5 py-10 md:px-10 md:py-12 lg:px-14 lg:py-14"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.12 }}
+            variants={stagger(0.09, 0.04)}
+          >
+            <motion.p
+              className="text-[13px] font-semibold uppercase tracking-[0.18em] text-slate-500"
+              variants={fadeUp}
+            >
+              The archipelago in depth
             </motion.p>
+            <h3
+              className="mt-3 text-[22px] md:text-[28px] lg:text-[32px] font-[600] leading-snug text-slate-900 max-w-[40ch]"
+            >
+              Scale, solitude, and a coastline still writing its own rules.
+            </h3>
+            <div className="mt-8 grid gap-8 lg:grid-cols-2 lg:gap-14 lg:items-start">
+              <motion.div className="space-y-5 text-[15px] md:text-[16px] leading-relaxed text-slate-600" variants={fadeUp}>
+                <p>
+                  Unlike island groups that have been reshaped by mass tourism, the Mergui Archipelago
+                  developed slowly after reopening. Access remains structured: foreign vessels rely on
+                  licensed agents for cruising permits, clearances, and coordination with authorities.
+                  That layer of process protects both visitors and the environment — and it preserves a
+                  cruising ground that still feels expeditionary rather than packaged.
+                </p>
+                <p>
+                  Seasons shape the experience as much as charts do. The northeast monsoon brings the
+                  classic dry-season window many yachts target; wind, sea state, and visibility shift
+                  markedly from the hot months into the rainy season, when most cruising fleets stand
+                  down. Planning with realistic timing — and local briefings on tides, currents, and
+                  anchorages — turns a demanding coastline into a rewarding one.
+                </p>
+              </motion.div>
+              <motion.div className="space-y-5 text-[15px] md:text-[16px] leading-relaxed text-slate-600" variants={fadeUp}>
+                <p>
+                  Beneath the surface, coral gardens, seagrass beds, and rocky reefs support turtles,
+                  reef fish, and larger pelagic visitors in season. Mangrove-lined estuaries and freshwater
+                  streams thread through many islands, linking rainforest to the sea. Lampi Marine
+                  National Park anchors the southern end of the system as Myanmar&apos;s first marine
+                  protected area — a reminder of how much of the archipelago remains conservation-minded
+                  rather than overbuilt.
+                </p>
+                <p>
+                  Whether you arrive on your own keel or join an organised passage, the Mergui
+                  Archipelago rewards patience, respect for regulations, and curiosity. Burma Sailing
+                  exists to bridge that gap: from first email to cleared departure, we help you focus on
+                  the reason you came — open water, empty bays, and a frontier coastline that still
+                  belongs, first and foremost, to the sea.
+                </p>
+              </motion.div>
+            </div>
           </motion.div>
         </div>
       </section>
 
       {/* ── Lampi Marine National Park ── */}
       <section className="mt-[70px] md:mt-[90px] px-3 md:px-6 lg:px-8">
-        <div className="mx-auto max-w-screen-xl rounded-2xl bg-gradient-to-b from-teal-50/50 to-sky-50/40 px-5 py-10 md:px-10 md:py-12 lg:px-12 lg:py-14">
+        <div className="mx-auto max-w-screen-xl">
           <motion.div
             className="grid gap-6 md:gap-8 md:grid-cols-2 lg:gap-14 lg:items-center"
             initial="hidden"
