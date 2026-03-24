@@ -20,18 +20,18 @@ export default function Home() {
       className=""
     >
       <Helmet>
-        <title>Burma Sailing | Home</title>
+        <title>Burma Sailing | Licensed yacht agency — Kawthaung &amp; Mergui Archipelago</title>
         <link rel="canonical" href={canonicalUrl('/')} />
         <meta name="description" content="Burma Sailing — your trusted yacht agent and passage specialist in the Mergui Archipelago, Myanmar. Expert permits, logistics, and local guidance for visiting yachts." />
-        <meta name="keywords" content="Burma Sailing, Mergui Archipelago, yacht agent Myanmar, sailing Myanmar, Kawthaung, cruising permits" />
+        <meta name="keywords" content="Burma Sailing, BurmaSailing, burmasailing, Mergui Archipelago, Myeik Archipelago, yacht agent Myanmar, sailing Myanmar, Kawthaung, cruising permits" />
         <meta property="og:url" content={canonicalUrl('/')} />
-        <meta property="og:title" content="Burma Sailing | Home" />
+        <meta property="og:title" content="Burma Sailing | Licensed yacht agency — Kawthaung &amp; Mergui Archipelago" />
         <meta property="og:description" content="Your trusted passage to the Mergui Archipelago. Expert yacht agency services in southern Myanmar." />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Burma Sailing" />
         <meta property="og:image" content={SITE_OG_IMAGE} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Burma Sailing | Home" />
+        <meta name="twitter:title" content="Burma Sailing | Licensed yacht agency — Kawthaung &amp; Mergui Archipelago" />
         <meta name="twitter:description" content="Your trusted passage to the Mergui Archipelago. Expert yacht agency services in southern Myanmar." />
         <meta name="twitter:image" content={SITE_OG_IMAGE} />
       </Helmet>

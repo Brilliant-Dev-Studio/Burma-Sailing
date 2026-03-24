@@ -1,0 +1,18 @@
+{
+  "name": "Burma Sailing",
+  "short_name": "Burma Sailing",
+  "description": "Licensed yacht agency in Kawthaung, Myanmar — Mergui Archipelago permits and support.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "background_color": "#ffffff",
+  "theme_color": "#0f172a",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
