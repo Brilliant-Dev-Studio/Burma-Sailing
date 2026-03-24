@@ -181,13 +181,9 @@ export default function Destinations() {
                 Lying 180 km north of Phuket — closed to the world for over fifty years.
               </h2>
               <p className="mt-5 text-[15px] md:text-[16px] leading-relaxed text-slate-600 lg:max-w-[34ch] xl:max-w-[36ch]">
-                <span lang="my" className="text-slate-800 font-medium">
-                  မြိတ်ကျွန်းစု
-                </span>{' '}
-                — the <strong className="font-semibold text-slate-800">Myeik Archipelago</strong>, often
-                called the <strong className="font-semibold text-slate-800">Mergui Archipelago</strong> on
-                charts — lies roughly on that bearing from Phuket across the Andaman Sea. For generations
-                it was a name on maps more than a place yachts could sail; those decades of closure helped
+                The <strong className="font-semibold text-slate-800">Mergui Archipelago</strong> lies
+                roughly on that bearing from Phuket across the Andaman Sea. For generations it was a name
+                on charts more than a place most yachts could sail; those decades of closure helped
                 preserve the islands and seas you see today.
               </p>
             </motion.div>
@@ -197,10 +193,10 @@ export default function Destinations() {
             >
               <p>
                 Comprising over eight hundred islands and covering an area of ten thousand square miles,
-                မြိတ်ကျွန်းစု — the Myeik or Mergui Archipelago in southern Myanmar — had, until January
-                1997, been closed to all foreigners for over fifty years. This extraordinary area is
-                totally untouched by modern development — the majority of islands are densely forested and
-                mountainous, with impenetrable jungle meeting white sand beaches.
+                the Mergui Archipelago in southern Myanmar had, until January 1997, been closed to all
+                foreigners for over fifty years. This extraordinary area is totally untouched by modern
+                development — the majority of islands are densely forested and mountainous, with
+                impenetrable jungle meeting white sand beaches.
               </p>
               <p>
                 Stretching along the Andaman Sea from the Thai border near Ranong to the deep south of
