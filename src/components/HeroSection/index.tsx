@@ -154,7 +154,9 @@ export const HeroSection = () => {
             </span>
           </motion.h1>
           <motion.p className="mt-4 text-[14px] leading-relaxed text-slate-500 max-w-[40ch]" variants={fadeUp}>
-            Licensed yacht agency — permits, clearance, guides, and local support for the Mergui Archipelago.
+            <span className="text-slate-800 font-medium">Burma Sailing</span>
+            {' '}
+            is a licensed yacht agency — permits, clearance, guides, and local support for the Mergui Archipelago.
           </motion.p>
           <motion.div className="mt-6 flex flex-wrap items-center gap-2.5" variants={fadeUp}>
             <a href="/contact"
@@ -276,9 +278,9 @@ export const HeroSection = () => {
               className="mt-6 text-[15px] xl:text-[16px] leading-relaxed text-slate-500 max-w-[36ch]"
               variants={fadeUp}
             >
-              We are a licensed yacht agency based in Kawthaung. We handle
-              permits, clearance, guides, and everything your vessel needs
-              to sail the Mergui Archipelago.
+              <span className="text-slate-800 font-medium">Burma Sailing</span>
+              {' '}
+              is a licensed yacht agency based in Kawthaung. We handle permits, clearance, guides, and everything your vessel needs to sail the Mergui Archipelago.
             </motion.p>
 
             <motion.div className="mt-8 flex items-center gap-3" variants={fadeUp}>
