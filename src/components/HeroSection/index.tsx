@@ -148,7 +148,10 @@ export const HeroSection = () => {
             Kawthaung, Myanmar
           </motion.p>
           <motion.h1 className="mt-3 text-[28px] sm:text-[32px] font-[600] leading-[1.12]" variants={fadeUp}>
-            Your Trusted Passage to the Mergui Archipelago
+            <span className="block">Burma Sailing</span>
+            <span className="mt-2 block text-[22px] sm:text-[26px] font-[500] leading-[1.15] text-slate-700">
+              Your Trusted Passage to the Mergui Archipelago
+            </span>
           </motion.h1>
           <motion.p className="mt-4 text-[14px] leading-relaxed text-slate-500 max-w-[40ch]" variants={fadeUp}>
             Licensed yacht agency — permits, clearance, guides, and local support for the Mergui Archipelago.
@@ -263,7 +266,10 @@ export const HeroSection = () => {
               className="mt-4 text-[38px] xl:text-[48px] font-[600] leading-[1.1] text-slate-900"
               variants={fadeUp}
             >
-              Your Trusted Passage to the Mergui Archipelago
+              <span className="block">Burma Sailing</span>
+              <span className="mt-3 block text-[26px] xl:text-[32px] font-[500] leading-[1.15] text-slate-700">
+                Your Trusted Passage to the Mergui Archipelago
+              </span>
             </motion.h1>
 
             <motion.p

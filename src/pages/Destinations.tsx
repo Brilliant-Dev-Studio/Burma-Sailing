@@ -473,7 +473,7 @@ export default function Destinations() {
             ))}
           </motion.div>
         </div>
-      </section>
+      </section> 
 
       {/* ── Weather / Seasons ── */}
       <section className="mt-[80px] md:mt-[100px] px-3 md:px-6 lg:px-8 pb-[80px]">
