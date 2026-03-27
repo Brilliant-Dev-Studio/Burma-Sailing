@@ -18,7 +18,7 @@
       ]
     },
     {
-      "source": "/sitemap-pages.xml",
+      "source": "/sitemap-urls.xml",
       "headers": [
         {
           "key": "Content-Type",
@@ -48,6 +48,11 @@
     {
       "source": "/sitemap.xml",
       "destination": "/sitemap_index.xml",
+      "permanent": true
+    },
+    {
+      "source": "/sitemap-pages.xml",
+      "destination": "/sitemap-urls.xml",
       "permanent": true
     }
   ],

@@ -4,11 +4,8 @@
 User-agent: *
 Allow: /
 
-# Block build artefacts and config files
+# Block source tree only (not deployed on production, but harmless if requested)
 Disallow: /src/
-Disallow: /*.json$
-Disallow: /*.ts$
-Disallow: /*.tsx$
 
 # Sitemap location
 Sitemap: https://www.burmasailing.info/sitemap_index.xml
