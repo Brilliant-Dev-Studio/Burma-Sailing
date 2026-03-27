@@ -11,4 +11,4 @@ Disallow: /*.ts$
 Disallow: /*.tsx$
 
 # Sitemap location
-Sitemap: https://www.burmasailing.info/sitemap.xml
+Sitemap: https://www.burmasailing.info/sitemap_index.xml
