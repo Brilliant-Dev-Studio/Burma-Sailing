@@ -15,7 +15,7 @@ const stagger = (gap: number, delay = 0) => ({
   visible: { transition: { staggerChildren: gap, delayChildren: delay } },
 })
 
-/** Ocean / sky tones — cycles for 6 cards */
+/** Ocean / sky tones — cycles per card */
 const WAVE_PALETTES = [
   { c1: '#2dd4bf', c2: '#0ea5e9', stroke: '#0d9488' },
   { c1: '#7dd3fc', c2: '#818cf8', stroke: '#4f46e5' },
@@ -27,64 +27,35 @@ const WAVE_PALETTES = [
 
 const testimonials = [
   {
-    quote:
-      'Burma Sailing handled our cruising permit and port clearance from start to finish—we cleared Kawthaung smoothly and had clear guidance for every leg in the Archipelago.',
-    name: 'J. R.',
-    role: 'Cruising yacht owner',
-    region: 'Australia',
-    rating: 5 as const,
-    avatar:
-      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=160&h=160&fit=crop&crop=faces',
+    quote: `We had a great experience working with your agency during our trip.
+
+The support and coordination were excellent, and everything was handled smoothly from start to finish.
+
+We especially appreciated the detailed information and guidance you provided regarding the diving spots. The recommendations were accurate, well-planned, and helped us maximize our time on the water.
+
+It made the trip more enjoyable and efficient for both crew and guests.
+
+Your communication was always prompt and professional, and it was clear that you truly understand the needs of captains and yacht operations.
+
+I highly recommend your services to other captains and yachts looking for reliable and knowledgeable local support.`,
+    name: 'Melvin',
+    role: 'GOTO Captain',
   },
   {
-    quote:
-      'The local knowledge goes beyond any pilot guide: anchorages, tides, and how to move respectfully among the islands. We felt supported the whole passage.',
-    name: 'S. & L.',
-    role: 'Sailing couple',
-    region: 'United Kingdom',
-    rating: 5 as const,
-    avatar:
-      'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=160&h=160&fit=crop&crop=faces',
+    quote: `We did the archipelago tour organized by Burma Sailing. Probably the only opportunity to sail around untouched islands of Burma. We met Moken people still living their original sea gypsy life. Most of the islands are inhabited, beautiful mooring spots.
+
+We had a guide on board for the trip.
+
+Perfect organization by Nai.Nai
+
+Not cheap, but worth it.`,
+    name: 'Astra',
+    role: '',
   },
   {
-    quote:
-      'Fast replies on WhatsApp, transparent paperwork, and a team that genuinely cares that your voyage is legal and safe. Highly recommend for Mergui.',
-    name: 'M. K.',
-    role: 'Charter guest',
-    region: 'Singapore',
-    rating: 5 as const,
-    avatar:
-      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=160&h=160&fit=crop&crop=faces',
-  },
-  {
-    quote:
-      'We arrived with a tight weather window; they coordinated officials and fuel without drama. That kind of calm efficiency is exactly what you want in a remote port.',
-    name: 'P. T.',
-    role: 'Sailing yacht captain',
-    region: 'Germany',
-    rating: 5 as const,
-    avatar:
-      'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=160&h=160&fit=crop&crop=faces',
-  },
-  {
-    quote:
-      'Paperwork for crew and vessel was explained clearly, and the briefing on restricted zones was thorough. We felt prepared before we weighed anchor.',
-    name: 'E. V.',
-    role: 'First mate',
-    region: 'France',
-    rating: 5 as const,
-    avatar:
-      'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=160&h=160&fit=crop&crop=faces',
-  },
-  {
-    quote:
-      'From Ranong logistics to our first night in a quiet bay—Burma Sailing stayed in touch the whole way. Genuine hospitality and professional service.',
-    name: 'H. C.',
-    role: 'Charter guest',
-    region: 'Hong Kong',
-    rating: 5 as const,
-    avatar:
-      'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=160&h=160&fit=crop&crop=faces',
+    quote: `I've known Nai Nai for over ten years, first through Burma Boating and now with Burma Sailing. As a superyacht captain, I've used his services plenty—he handles immigration, customs, and park permits for the Mergui Archipelago like clockwork. Always prompt, always smiling, super knowledgeable about the islands, birds, wildlife… honestly, he's just a lovely, easygoing bloke who makes everything smooth. You won't regret booking with him—I've never had a single hiccup.`,
+    name: 'Bruce John',
+    role: 'Superyacht captain',
   },
 ] as const
 
@@ -92,33 +63,7 @@ type Testimonial = (typeof testimonials)[number]
 
 /** ~1 card + peek on small screens, ~2 on md, ~3 on lg */
 const CARD_SHELL =
-  'shrink-0 w-[min(88vw,300px)] md:w-[min(340px,calc((100vw-5rem)/2.12))] lg:w-[min(384px,calc((100vw-6rem)/3.08))]'
-
-function StarRow({ rating }: { rating: number }) {
-  return (
-    <div
-      className="flex gap-0.5"
-      role="img"
-      aria-label={`${rating} out of 5 stars`}
-    >
-      {Array.from({ length: 5 }).map((_, i) => (
-        <svg
-          key={i}
-          className={
-            i < rating
-              ? 'h-4 w-4 text-amber-500'
-              : 'h-4 w-4 text-slate-200'
-          }
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          aria-hidden
-        >
-          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-        </svg>
-      ))}
-    </div>
-  )
-}
+  'shrink-0 w-[min(90vw,340px)] md:w-[min(360px,calc((100vw-5rem)/2.12))] lg:w-[min(400px,calc((100vw-6rem)/3.08))]'
 
 function usePrefersReducedMotion(): boolean {
   const [reduced, setReduced] = useState(false)
@@ -228,50 +173,51 @@ function TestimonialCard({
   dataIdx,
   svgIdSuffix,
   reducedMotion,
-  eagerImage,
 }: {
   t: Testimonial
   dataIdx: number
   svgIdSuffix: string
   reducedMotion: boolean
-  eagerImage?: boolean
 }) {
+  const palette = WAVE_PALETTES[dataIdx % WAVE_PALETTES.length]
+
   return (
-    <article className="relative flex h-full min-h-[280px] flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04)] md:min-h-[300px]">
+    <article
+      className="group relative flex h-full min-h-[280px] flex-col overflow-hidden rounded-3xl border border-slate-200/90 bg-gradient-to-br from-white via-white to-slate-50/90 shadow-[0_12px_40px_-14px_rgba(15,23,42,0.12)] ring-1 ring-slate-900/[0.04] transition-[box-shadow,transform] duration-300 hover:shadow-[0_20px_50px_-12px_rgba(15,23,42,0.16)] hover:-translate-y-0.5 md:min-h-[300px]"
+    >
       <CardMiddleWaves
         cardIndex={dataIdx}
         svgIdSuffix={svgIdSuffix}
         reducedMotion={reducedMotion}
       />
-      <div className="relative z-10 flex min-h-full flex-col p-5 md:p-6">
-        <div className="flex items-start justify-between gap-3">
-          <img
-            src={t.avatar}
-            alt=""
-            width={56}
-            height={56}
-            className="h-12 w-12 shrink-0 rounded-full object-cover ring-2 ring-white shadow-md md:h-14 md:w-14"
-            loading={eagerImage ? 'eager' : 'lazy'}
-            decoding="async"
-          />
-          <StarRow rating={t.rating} />
-        </div>
+      {/* Soft vignette so wave + text stay readable */}
+      <div
+        className="pointer-events-none absolute inset-0 z-[1] rounded-3xl bg-gradient-to-b from-white/30 via-transparent to-slate-50/40"
+        aria-hidden
+      />
+      <div className="relative z-10 flex min-h-full flex-col p-6 md:p-7">
         <p
-          className="font-serif mt-3 text-[2.75rem] leading-none text-slate-200 select-none md:mt-4 md:text-[3.25rem]"
+          className="font-serif text-[3rem] leading-[0.85] text-teal-600/[0.22] select-none md:text-[3.35rem]"
+          style={{ textShadow: '0 1px 0 rgba(255,255,255,0.8)' }}
           aria-hidden
         >
           “
         </p>
-        <blockquote className="-mt-1 flex-1 text-[14px] leading-[1.65] text-slate-700 md:text-[15px]">
+        <blockquote className="-mt-1 flex-1 whitespace-pre-line font-serif text-[14px] leading-[1.75] text-slate-600 antialiased md:text-[15px] md:leading-[1.8]">
           {t.quote}
         </blockquote>
-        <footer className="mt-6 border-t border-slate-100 pt-4 md:mt-7 md:pt-5">
-          <p className="text-[14px] font-medium text-slate-900">{t.name}</p>
-          <p className="mt-1 text-[12px] text-slate-500 md:text-[13px]">
-            {t.role}
-            <span className="text-slate-300"> · </span>
-            {t.region}
-          </p>
+        <footer className="mt-6 border-t border-slate-200/80 pt-5 md:mt-7 md:pt-6">
+          <div
+            className="mb-3 h-0.5 w-11 rounded-full"
+            style={{
+              background: `linear-gradient(90deg, ${palette.c1}, ${palette.c2})`,
+            }}
+            aria-hidden
+          />
+          <p className="text-[15px] font-semibold tracking-tight text-slate-900">{t.name}</p>
+          {t.role ? (
+            <p className="mt-1.5 text-[13px] leading-snug text-slate-500">{t.role}</p>
+          ) : null}
         </footer>
       </div>
     </article>
@@ -284,10 +230,18 @@ export default function HomeTestimonialsSection() {
 
   return (
     <section
-      className="relative mt-[100px] md:mt-[120px] border-t border-slate-200/90 bg-white"
+      className="relative mt-[100px] md:mt-[120px] overflow-hidden border-t border-slate-200/80 bg-gradient-to-b from-slate-50/95 via-white to-slate-50/70"
       aria-labelledby="home-testimonials-heading"
     >
-      <div className="mx-auto max-w-screen-xl px-3 md:px-6 lg:px-8 py-14 md:py-16 lg:py-20">
+      {/* Subtle header rule */}
+      <div
+        className="pointer-events-none absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-teal-500/25 to-transparent"
+        aria-hidden
+      />
+      <div className="pointer-events-none absolute -right-24 top-24 h-72 w-72 rounded-full bg-sky-200/25 blur-3xl md:-right-16" aria-hidden />
+      <div className="pointer-events-none absolute -left-20 bottom-32 h-64 w-64 rounded-full bg-teal-200/20 blur-3xl" aria-hidden />
+
+      <div className="relative mx-auto max-w-screen-xl px-3 md:px-6 lg:px-8 py-14 md:py-16 lg:py-20">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -295,16 +249,19 @@ export default function HomeTestimonialsSection() {
           variants={stagger(0.1, 0)}
           className="max-w-2xl"
         >
-          <motion.p
-            variants={fadeUp}
-            className="text-[12px] font-semibold uppercase tracking-[0.2em] text-slate-500"
-          >
-            From our guests
-          </motion.p>
+          <motion.div variants={fadeUp} className="flex items-center gap-3">
+            <span
+              className="inline-flex h-px w-8 bg-gradient-to-r from-teal-500/60 to-sky-500/50"
+              aria-hidden
+            />
+            <p className="text-[12px] font-semibold uppercase tracking-[0.22em] text-slate-500">
+              From our guests
+            </p>
+          </motion.div>
           <motion.h2
             id="home-testimonials-heading"
             variants={fadeUp}
-            className="mt-3 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] md:leading-snug"
+            className="mt-4 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.85rem] md:leading-snug"
           >
             Notes from the passage
           </motion.h2>
@@ -331,14 +288,13 @@ export default function HomeTestimonialsSection() {
                     dataIdx={i}
                     svgIdSuffix={`static-${i}`}
                     reducedMotion
-                    eagerImage={i < 3}
                   />
                 </li>
               ))}
             </ul>
           ) : (
             <div className="testimonial-marquee-clip testimonial-marquee-wrap -mx-1 overflow-hidden px-1 md:-mx-2 md:px-2">
-              <div className="testimonial-marquee-track flex gap-5 md:gap-6">
+              <div className="testimonial-marquee-track flex gap-6 md:gap-7">
                 {loop.map((t, loopIdx) => {
                   const dataIdx = loopIdx % testimonials.length
                   return (
@@ -351,7 +307,6 @@ export default function HomeTestimonialsSection() {
                         dataIdx={dataIdx}
                         svgIdSuffix={`m${loopIdx}`}
                         reducedMotion={false}
-                        eagerImage={loopIdx < 3}
                       />
                     </div>
                   )
