@@ -25,12 +25,9 @@ const images = galleryImages.map((img, i) => ({
 
 const categories = ['All', 'Sailing', 'Islands', 'Onboard']
 
-/** Returns a 30 px-wide, heavily-blurred Cloudinary URL (loads in <100 ms). */
-function cloudinaryBlur(url: string): string | null {
-  const base = 'https://res.cloudinary.com/dvbgmlsvl/image/upload/'
-  if (!url.startsWith(base)) return null
-  const rest = url.slice(base.length).replace(/^v\d+\//, '')
-  return `${base}w_30,q_5,e_blur:800/${rest}`
+/** Blur placeholders were Cloudinary-only; S3 has no transform endpoint. */
+function cloudinaryBlur(_url: string): string | null {
+  return null
 }
 
 const pageMotion = {
@@ -147,7 +144,7 @@ export default function Gallery() {
       >
         {/* Parallax image — taller than container so it has room to slide */}
         <motion.img
-          src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983731/viber_image_2026-03-19_09-05-53-362_aqwiiq.jpg"
+          src="https://burma-sailing-assets.s3.eu-north-1.amazonaws.com/viber_image_2026-03-19_09-05-53-362.jpg"
           alt="Gallery hero"
           style={{ y: heroImgY }}
           className="w-full h-[120%] object-cover object-center will-change-transform"

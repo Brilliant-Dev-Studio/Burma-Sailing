@@ -3,6 +3,8 @@ import { Helmet } from 'react-helmet-async'
 import { SITE_OG_IMAGE, canonicalUrl } from '@/lib/siteConfig'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
+const S3_ASSETS_BASE = 'https://burma-sailing-assets.s3.eu-north-1.amazonaws.com'
+
 const ease = [0.22, 1, 0.36, 1] as const
 const dur  = 0.5
 
@@ -125,7 +127,7 @@ export default function Destinations() {
         className="relative h-[84svh] overflow-hidden rounded-b-[4px]"
       >
         <motion.img
-          src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983725/viber_image_2026-03-19_09-03-29-187_gyceoe.jpg"
+          src={`${S3_ASSETS_BASE}/viber_image_2026-03-19_09-03-29-187.jpg`}
           alt="Mergui Archipelago"
           style={{ y: heroImgY }}
           className="w-full h-[120%] object-cover object-center will-change-transform"
@@ -337,7 +339,7 @@ export default function Destinations() {
               variants={fadeUp}
             >
               <img
-                src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774172053/oikos-lampi-1_7_hshszz.jpg"
+                src={`${S3_ASSETS_BASE}/oikos-lampi-1_7_hshszz.jpg`}
                 alt="Lampi Marine National Park, Mergui Archipelago"
                 className="h-full w-full object-cover hover:scale-[1.03] transition-transform duration-700 ease-out"
                 loading="lazy"
@@ -362,7 +364,7 @@ export default function Destinations() {
               variants={fadeUp}
             >
               <img
-                src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774073668/viber_image_2026-03-21_11-30-44-725_t38qoq.jpg"
+                src={`${S3_ASSETS_BASE}/viber_image_2026-03-20_09-12-14-102.jpg`}
                 alt="Mergui islands"
                 className="w-full h-full object-cover hover:scale-[1.03] transition-transform duration-700 ease-out"
               />
@@ -573,7 +575,7 @@ export default function Destinations() {
               style={{ y: ctaImgY, top: -70, bottom: -70 }}
             >
               <img
-                src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983756/viber_image_2026-03-19_09-18-42-233_dnjxdf.jpg"
+                src={`${S3_ASSETS_BASE}/viber_image_2026-03-19_09-18-42-233.jpg`}
                 alt="Sailing the Mergui Archipelago"
                 className="w-full h-full object-cover"
               />
@@ -641,7 +643,7 @@ export default function Destinations() {
                 variants={fadeUp}
               >
                 <img
-                  src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773993970/viber_image_2026-03-19_08-58-20-077_vjrvvw.jpg"
+                  src={`${S3_ASSETS_BASE}/viber_image_2026-03-19_08-58-20-077.jpg`}
                   alt="Mergui Archipelago"
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                 />
@@ -656,7 +658,7 @@ export default function Destinations() {
                 variants={fadeUp}
               >
                 <img
-                  src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773993970/viber_image_2026-03-19_08-58-19-806_twqczy.jpg"
+                  src={`${S3_ASSETS_BASE}/viber_image_2026-03-19_08-58-19-806.jpg`}
                   alt="Island Light"
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                 />
@@ -670,7 +672,7 @@ export default function Destinations() {
                 variants={fadeUp}
               >
                 <img
-                  src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983728/viber_image_2026-03-19_09-03-30-596_s6k25j.jpg"
+                  src={`${S3_ASSETS_BASE}/viber_image_2026-03-19_09-03-30-596.jpg`}
                   alt="Remote Passage"
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                 />
@@ -684,7 +686,7 @@ export default function Destinations() {
                 variants={fadeUp}
               >
                 <img
-                  src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983756/viber_image_2026-03-20_08-30-49-219_pxdk4u.jpg"
+                  src={`${S3_ASSETS_BASE}/viber_image_2026-03-20_08-30-49-219.jpg`}
                   alt="Deck Moments"
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                 />

@@ -6,6 +6,8 @@ import {
   useInView, useMotionValue, animate as fmAnimate,
 } from 'framer-motion'
 
+const S3_ASSETS_BASE = 'https://burma-sailing-assets.s3.eu-north-1.amazonaws.com'
+
 const ease = [0.22, 1, 0.36, 1] as const
 
 const seq = {
@@ -52,7 +54,7 @@ const packages = [
     title: 'Honeymoon Island\nDay Return',
     desc: "An intimate escape to one of the Archipelago's most secluded island shores. Perfect for couples seeking untouched beauty and absolute privacy.",
     highlights: ['Private island access', 'Full-day itinerary', 'Local guide included', 'Return transfer'],
-    img:  'https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983756/viber_image_2026-03-20_08-30-49-219_pxdk4u.jpg',
+    img:  `${S3_ASSETS_BASE}/viber_image_2026-03-20_08-30-49-219.jpg`,
   },
   {
     badge: (
@@ -63,7 +65,7 @@ const packages = [
     title: "Cock's Comb\n4 Islands Trip",
     desc: "An exhilarating day voyage covering four distinct islands around Cock's Comb — each with its own character, wildlife, and anchorages.",
     highlights: ['4 island stops', 'Snorkeling spots', 'Wildlife sightings', 'Full-day guided'],
-    img: 'https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983758/viber_image_2026-03-20_09-12-14-102_fgaouz.jpg',
+    img: `${S3_ASSETS_BASE}/viber_image_2026-03-20_09-12-14-102.jpg`,
   },
   {
     badge: (
@@ -74,7 +76,7 @@ const packages = [
     title: 'Island Hopping by\nSea Gypsy Boat',
     desc: 'Experience the Archipelago as it has been for centuries — aboard a traditional wooden Sea Gypsy vessel, navigating between islands with local knowledge at the helm.',
     highlights: ['Traditional wooden boat', 'Sea Gypsy culture', 'Multi-island route', 'Authentic experience'],
-    img: 'https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773993976/viber_image_2026-03-19_09-00-26-080_oqjzth.jpg',
+    img: `${S3_ASSETS_BASE}/viber_image_2026-03-19_09-00-26-080.jpg`,
   },
   {
     badge: (
@@ -86,7 +88,7 @@ const packages = [
     title: 'Private Boat\nRental & Charter',
     desc: 'Full vessel rental for independent exploration. Customise your route, duration, and pace — we handle all logistics, permits, and crew support.',
     highlights: ['Flexible itinerary', 'Crew & captain', 'All permits included', 'Custom duration'],
-    img: 'https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983729/viber_image_2026-03-19_09-03-30-685_tkdahn.jpg',
+    img: `${S3_ASSETS_BASE}/viber_image_2026-03-19_09-03-30-685.jpg`,
   },
 ]
 
@@ -252,7 +254,7 @@ export default function Services() {
         className="relative h-[84svh] overflow-hidden rounded-b-[4px]"
       >
         <motion.img
-          src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773993970/viber_image_2026-03-19_08-58-20-077_vjrvvw.jpg"
+          src={`${S3_ASSETS_BASE}/viber_image_2026-03-19_08-58-20-077.jpg`}
           alt="Burma Sailing Services"
           style={{ y: heroImgY }}
           className="w-full h-[120%] object-cover object-center will-change-transform"
@@ -594,7 +596,7 @@ export default function Services() {
               style={{ y: ctaImgY, top: -70, bottom: -70 }}
             >
               <img
-                src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983755/viber_image_2026-03-19_09-18-42-184_qn1xcy.jpg"
+                src={`${S3_ASSETS_BASE}/viber_image_2026-03-19_09-18-42-184.jpg`}
                 alt="Contact Burma Sailing"
                 className="w-full h-full object-cover"
               />

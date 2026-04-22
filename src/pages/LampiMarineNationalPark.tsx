@@ -3,6 +3,8 @@ import { Helmet } from 'react-helmet-async'
 import { motion, AnimatePresence } from 'framer-motion'
 import { canonicalUrl } from '@/lib/siteConfig'
 
+const S3_ASSETS_BASE = 'https://burma-sailing-assets.s3.eu-north-1.amazonaws.com'
+
 const ease = [0.22, 1, 0.36, 1] as const
 const dur = 0.5
 
@@ -25,31 +27,31 @@ const pageMotion = {
 /** မြေပုံ — user order: ၃ ပုံ */
 const MAP_IMAGES = [
   {
-    src: 'https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774172781/IMG_2798_medehb.jpg',
+    src: `${S3_ASSETS_BASE}/IMG_2798.JPG`,
     alt: 'Lampi Marine National Park — map overview',
   },
   {
-    src: 'https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774172782/IMG_2799_scnag7.jpg',
+    src: `${S3_ASSETS_BASE}/IMG_2799.JPG`,
     alt: 'Lampi Marine National Park — map detail',
   },
   {
-    src: 'https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774172053/oikos-lampi-1_7_hshszz.jpg',
+    src: `${S3_ASSETS_BASE}/oikos-lampi-1_7_hshszz.jpg`,
     alt: 'Lampi Marine National Park — Oikos map',
   },
 ] as const
 
 const GALLERY_IMAGES = [
-  { src: 'https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774172780/IMG_2810_rz7jzc.jpg', alt: 'Lampi — coastal scenery' },
-  { src: 'https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774172780/IMG_2815_ch2m39.jpg', alt: 'Lampi — island landscape' },
-  { src: 'https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774172780/IMG_2816_nfauey.jpg', alt: 'Lampi — beaches and forest' },
-  { src: 'https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774172780/IMG_2814_uukfup.jpg', alt: 'Lampi — Mergui Archipelago' },
-  { src: 'https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774172779/IMG_2806_snlrti.jpg', alt: 'Lampi — marine national park' },
-  { src: 'https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774172779/IMG_2807_yyz4d6.jpg', alt: 'Lampi — cruising grounds' },
-  { src: 'https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774172779/IMG_2811_ri97gh.jpg', alt: 'Lampi — nature' },
-  { src: 'https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774172779/IMG_2808_gdlkrn.jpg', alt: 'Lampi — islands' },
-  { src: 'https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774172779/IMG_2805_bcolbv.jpg', alt: 'Lampi — shoreline' },
-  { src: 'https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774172782/IMG_2804_wd7pew.jpg', alt: 'Lampi — Archipelago views' },
-  { src: 'https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774172782/IMG_2802_p4urwf.jpg', alt: 'Lampi — wildlife habitat' },
+  { src: `${S3_ASSETS_BASE}/IMG_2810.JPG`, alt: 'Lampi — coastal scenery' },
+  { src: `${S3_ASSETS_BASE}/IMG_2815.JPG`, alt: 'Lampi — island landscape' },
+  { src: `${S3_ASSETS_BASE}/IMG_2816.JPG`, alt: 'Lampi — beaches and forest' },
+  { src: `${S3_ASSETS_BASE}/IMG_2814.JPG`, alt: 'Lampi — Mergui Archipelago' },
+  { src: `${S3_ASSETS_BASE}/IMG_2806.JPG`, alt: 'Lampi — marine national park' },
+  { src: `${S3_ASSETS_BASE}/IMG_2807.JPG`, alt: 'Lampi — cruising grounds' },
+  { src: `${S3_ASSETS_BASE}/IMG_2811.JPG`, alt: 'Lampi — nature' },
+  { src: `${S3_ASSETS_BASE}/IMG_2808.JPG`, alt: 'Lampi — islands' },
+  { src: `${S3_ASSETS_BASE}/IMG_2805.JPG`, alt: 'Lampi — shoreline' },
+  { src: `${S3_ASSETS_BASE}/IMG_2804.JPG`, alt: 'Lampi — Archipelago views' },
+  { src: `${S3_ASSETS_BASE}/IMG_2802.JPG`, alt: 'Lampi — wildlife habitat' },
 ] as const
 
 const PATH = '/destinations/lampi-marine-national-park'

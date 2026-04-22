@@ -183,7 +183,7 @@ function TestimonialCard({
 
   return (
     <article
-      className="group relative flex h-full min-h-[280px] flex-col overflow-hidden rounded-3xl border border-slate-200/90 bg-gradient-to-br from-white via-white to-slate-50/90 shadow-[0_12px_40px_-14px_rgba(15,23,42,0.12)] ring-1 ring-slate-900/[0.04] transition-[box-shadow,transform] duration-300 hover:shadow-[0_20px_50px_-12px_rgba(15,23,42,0.16)] hover:-translate-y-0.5 md:min-h-[300px]"
+      className="group relative flex h-full min-h-[240px] flex-col overflow-hidden rounded-3xl border border-slate-200/90 bg-gradient-to-br from-white via-white to-slate-50/90 shadow-sm transition-[box-shadow,transform] duration-300 hover:shadow-md md:min-h-[260px]"
     >
       <CardMiddleWaves
         cardIndex={dataIdx}
@@ -195,7 +195,7 @@ function TestimonialCard({
         className="pointer-events-none absolute inset-0 z-[1] rounded-3xl bg-gradient-to-b from-white/30 via-transparent to-slate-50/40"
         aria-hidden
       />
-      <div className="relative z-10 flex min-h-full flex-col p-6 md:p-7">
+      <div className="relative z-10 flex min-h-full min-h-0 flex-col p-6 md:p-7">
         <p
           className="font-serif text-[3rem] leading-[0.85] text-teal-600/[0.22] select-none md:text-[3.35rem]"
           style={{ textShadow: '0 1px 0 rgba(255,255,255,0.8)' }}
@@ -203,7 +203,7 @@ function TestimonialCard({
         >
           “
         </p>
-        <blockquote className="-mt-1 flex-1 whitespace-pre-line font-serif text-[14px] leading-[1.75] text-slate-600 antialiased md:text-[15px] md:leading-[1.8]">
+        <blockquote className="-mt-1 flex-1 min-h-0 whitespace-pre-line font-serif text-[14px] leading-[1.75] text-slate-600 antialiased md:text-[15px] md:leading-[1.8] testimonial-quote-clamp">
           {t.quote}
         </blockquote>
         <footer className="mt-6 border-t border-slate-200/80 pt-5 md:mt-7 md:pt-6">
@@ -233,6 +233,30 @@ export default function HomeTestimonialsSection() {
       className="relative mt-[100px] md:mt-[120px] overflow-hidden border-t border-slate-200/80 bg-gradient-to-b from-slate-50/95 via-white to-slate-50/70"
       aria-labelledby="home-testimonials-heading"
     >
+      <style>{`
+        .testimonial-quote-clamp {
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 5;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          min-height: 0;
+        }
+        .group:hover .testimonial-quote-clamp {
+          -webkit-line-clamp: unset;
+          overflow: auto;
+          max-height: 10.5rem;
+          padding-right: 0.25rem;
+          flex: none;
+          overscroll-behavior: contain;
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+        }
+        .group:hover .testimonial-quote-clamp::-webkit-scrollbar {
+          width: 0;
+          height: 0;
+        }
+      `}</style>
       {/* Subtle header rule */}
       <div
         className="pointer-events-none absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-teal-500/25 to-transparent"

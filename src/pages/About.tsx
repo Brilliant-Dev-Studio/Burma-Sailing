@@ -3,6 +3,8 @@ import { Helmet } from 'react-helmet-async'
 import { SITE_OG_IMAGE, canonicalUrl } from '@/lib/siteConfig'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
+const S3_ASSETS_BASE = 'https://burma-sailing-assets.s3.eu-north-1.amazonaws.com'
+
 const pageMotion = {
   initial: { opacity: 0, y: 12 },
   animate: { opacity: 1, y: 0 },
@@ -24,9 +26,9 @@ const stagger = (gap: number, delayChildren = 0) => ({
 
 const stripImages = [
   { src: '/IMG_2671.JPG', caption: 'Island Anchorage' },
-  { src: 'https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983758/viber_image_2026-03-19_08-56-54-243_nhitjg.jpg', caption: 'On Deck' },
+  { src: `${S3_ASSETS_BASE}/viber_image_2026-03-19_08-56-54-243.jpg`, caption: 'On Deck' },
   { src: '/IMG_2674.JPG', caption: 'Remote Waters' },
-  { src: 'https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983743/viber_image_2026-03-19_09-10-09-093_obs4dr.jpg', caption: 'Crew Life' },
+  { src: `${S3_ASSETS_BASE}/viber_image_2026-03-19_09-10-09-093.jpg`, caption: 'Crew Life' },
 ]
 
 const services = [
@@ -89,7 +91,7 @@ export default function About() {
           style={{ y: heroImgY, top: 0, height: '130%' }}
         >
           <img
-            src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983724/viber_image_2026-03-19_09-03-29-052_jgbcej.jpg"
+            src={`${S3_ASSETS_BASE}/viber_image_2026-03-19_09-03-29-052.jpg`}
             alt="Burma Sailing — Mergui Archipelago"
             className="w-full h-full object-cover object-center"
             fetchPriority="high"
@@ -179,7 +181,7 @@ export default function About() {
               style={{ y: merguiY, top: -70, bottom: -70 }}
             >
               <img
-                src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983758/viber_image_2026-03-19_08-56-54-243_nhitjg.jpg"
+                src={`${S3_ASSETS_BASE}/viber_image_2026-03-19_08-56-54-243.jpg`}
                 alt="Mergui Archipelago sailing"
                 className="w-full h-full object-cover"
               />
@@ -250,28 +252,28 @@ export default function About() {
             className="col-span-1 row-span-2 overflow-hidden rounded-2xl h-[240px] md:h-[340px] lg:h-[420px]"
             variants={fadeUp}
           >
-            <img src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774075394/9d4c2e21-2468-424f-b496-676c2b78c963_wtjnzt.jpg" alt="Sailing life 1"
+            <img src={`${S3_ASSETS_BASE}/viber_image_2026-03-19_08-56-56-915.jpg`} alt="Sailing life 1"
               className="w-full h-full object-cover hover:scale-[1.05] transition-transform duration-700 ease-out" />
           </motion.div>
           <motion.div
             className="col-span-2 overflow-hidden rounded-2xl h-[115px] md:h-[163px] lg:h-[202px]"
             variants={fadeUp}
           >
-            <img src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773993976/viber_image_2026-03-19_09-00-24-481_w0aimx.jpg" alt="Sailing life 2"
+            <img src={`${S3_ASSETS_BASE}/viber_image_2026-03-19_09-00-24-481.jpg`} alt="Sailing life 2"
               className="w-full h-full object-cover hover:scale-[1.05] transition-transform duration-700 ease-out" />
           </motion.div>
           <motion.div
             className="col-span-1 overflow-hidden rounded-2xl h-[115px] md:h-[163px] lg:h-[202px]"
             variants={fadeUp}
           >
-            <img src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983727/viber_image_2026-03-19_09-03-29-845_tjezxp.jpg" alt="Sailing life 3"
+            <img src={`${S3_ASSETS_BASE}/viber_image_2026-03-19_09-03-29-845.jpg`} alt="Sailing life 3"
               className="w-full h-full object-cover hover:scale-[1.05] transition-transform duration-700 ease-out" />
           </motion.div>
           <motion.div
             className="col-span-1 overflow-hidden rounded-2xl h-[115px] md:h-[163px] lg:h-[202px]"
             variants={fadeUp}
           >
-            <img src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983740/viber_image_2026-03-19_09-05-58-623_ioqfxj.jpg" alt="Sailing life 4"
+            <img src={`${S3_ASSETS_BASE}/viber_image_2026-03-19_09-05-58-623.jpg`} alt="Sailing life 4"
               className="w-full h-full object-cover hover:scale-[1.05] transition-transform duration-700 ease-out" />
           </motion.div>
         </div>

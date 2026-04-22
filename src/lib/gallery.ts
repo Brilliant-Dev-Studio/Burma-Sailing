@@ -4,7 +4,11 @@ export type GalleryImage = {
   category: "Sailing" | "Islands" | "Onboard";
 };
 
-export const galleryImages: GalleryImage[] = [
+const S3_ASSETS_BASE = "https://burma-sailing-assets.s3.eu-north-1.amazonaws.com";
+
+type RawGalleryImage = GalleryImage;
+
+const rawGalleryImages: RawGalleryImage[] = [
   {
     url: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773993976/viber_image_2026-03-19_09-00-24-481_w0aimx.jpg",
     caption: "",
@@ -657,13 +661,20 @@ export const galleryImages: GalleryImage[] = [
   },
 ];
 
+function normalizeViberFilename(filename: string): string {
+  // viber_image_..._abcdef.jpg -> viber_image_....jpg
+  return filename.replace(/_(?:[a-z0-9]{6,})\.(jpg|jpeg|png|webp)$/i, ".$1");
+}
 
+function toS3FromCloudinaryImageUrl(url: string): string {
+  const filename = url.split("?")[0]?.split("/").pop();
+  if (!filename) return url;
+  return `${S3_ASSETS_BASE}/${normalizeViberFilename(filename)}`;
+}
 
-
-"Develop the notification screen and render base on noti type"
-"Develop the notification items and icons"
-"Test the notification brocast endpoint in frontend and check the error "
-"Refector the My booking tab section and make code solid"
-"Open the android simulatior and run the android app"
-"Debug the android google auth error and check the issue"
-"Check the developmode and production mode in google for auth"
+export const galleryImages: GalleryImage[] = rawGalleryImages
+  .filter((img) => img.url.includes("/viber_image_"))
+  .map((img) => ({
+    ...img,
+    url: toS3FromCloudinaryImageUrl(img.url),
+  }));

@@ -5,25 +5,18 @@ import HomeTestimonialsSection from "@/components/HomeTestimonialsSection";
 // HQ cached across SPA navigations — skip LQ on revisit
 const hqCached = new Set<string>()
 
-const CLOUD = 'https://res.cloudinary.com/dvbgmlsvl/video/upload'
+const S3_ASSETS_BASE = 'https://burma-sailing-assets.s3.eu-north-1.amazonaws.com'
 
 // Hero video (new high-res clip)
-const HERO_PUBLIC_ID = '1773887089358273_szckun'
-const HERO_VERSION  = 'v1774076397'
-const HERO_HQ_URL   = `${CLOUD}/w_1920,q_auto:best/${HERO_VERSION}/${HERO_PUBLIC_ID}.mp4`
-const HERO_LQ_URL   = `${CLOUD}/w_720,q_38/${HERO_VERSION}/${HERO_PUBLIC_ID}.mp4`
-// Mobile hero: video shown in a card (~half width of screen) — sharper than full-bleed upscale
-const HERO_MOBILE_HQ_URL = `${CLOUD}/w_960,q_auto:good/${HERO_VERSION}/${HERO_PUBLIC_ID}.mp4`
-const HERO_MOBILE_LQ_URL = `${CLOUD}/w_520,q_42/${HERO_VERSION}/${HERO_PUBLIC_ID}.mp4`
+const HERO_S3_FILENAME = '1773887089358273.MP4'
+const HERO_S3_URL = `${S3_ASSETS_BASE}/${HERO_S3_FILENAME}`
+const HERO_HQ_URL = HERO_S3_URL
+const HERO_LQ_URL = HERO_S3_URL
+const HERO_MOBILE_HQ_URL = HERO_S3_URL
+const HERO_MOBILE_LQ_URL = HERO_S3_URL
 
 // About-section video
-const VIDEO_PUBLIC_ID =
-  '0-02-06-1bf475a828eb15188c6d975111c04b66ce8a8654f8968dc34a42fbb0cfc92aa9_2217f6e8e35_qoxfys'
-const VIDEO_VERSION = 'v1773997431'
-// Full-quality URL
-const HQ_URL = `${CLOUD}/${VIDEO_VERSION}/${VIDEO_PUBLIC_ID}.mp4`
-// Medium-quality placeholder — acceptable visual while HQ buffers
-const LQ_URL = `${CLOUD}/q_40,w_854/${VIDEO_VERSION}/${VIDEO_PUBLIC_ID}.mp4`
+const ABOUT_MEDIA_IMAGE_SRC = `${S3_ASSETS_BASE}/viber_image_2026-03-19_09-05-52-773.jpg`
 
 export const HeroSection = () => {
   // ── Hero video state ──────────────────────────────────────────────────────
@@ -34,34 +27,21 @@ export const HeroSection = () => {
   const heroLqRef = useRef<HTMLVideoElement>(null)
   const heroHqRef = useRef<HTMLVideoElement>(null)
 
-  // ── About-section video state ─────────────────────────────────────────────
-  const [lqReady, setLqReady] = useState(false)
-  const [hqReady, setHqReady] = useState(() => hqCached.has(HQ_URL))
-  const videoLqRef = useRef<HTMLVideoElement>(null)
-  const videoRef   = useRef<HTMLVideoElement>(null)
-
   useEffect(() => {
     if (heroHqRef.current && heroHqRef.current.readyState >= 3) {
       hqCached.add(HERO_MOBILE_HQ_URL)
       setHeroHqReady(true)
     }
     if (heroLqRef.current && heroLqRef.current.readyState >= 3) setHeroLqReady(true)
-    const hq = videoRef.current
-    const lq = videoLqRef.current
-    if (hq && hq.readyState >= 3) { hqCached.add(HQ_URL); setHqReady(true) }
-    if (lq && lq.readyState >= 3) setLqReady(true)
   }, [])
 
-  const handleLqCanPlay = () => setLqReady(true)
-  const handleHqCanPlay = () => { hqCached.add(HQ_URL); setHqReady(true) }
-
   const previewImages = [
-    { src: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983722/viber_image_2026-03-19_09-03-28-612_estxxi.jpg",  alt: "Interiors & Details" },
-    { src: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983743/viber_image_2026-03-19_09-10-09-093_obs4dr.jpg",  alt: "Deck Moments" },
-    { src: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773993972/viber_image_2026-03-19_08-58-20-037_rpvrnj.jpg",  alt: "Island Light" },
+    { src: `${S3_ASSETS_BASE}/viber_image_2026-03-19_09-03-28-612.jpg`, alt: "Interiors & Details" },
+    { src: `${S3_ASSETS_BASE}/viber_image_2026-03-19_09-10-09-093.jpg`, alt: "Deck Moments" },
+    { src: `${S3_ASSETS_BASE}/viber_image_2026-03-19_08-58-20-037.jpg`, alt: "Island Light" },
     { src: "/IMG_2671.JPG",  alt: "Journeys & Memories" },
-    { src: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773993970/viber_image_2026-03-19_08-58-19-806_twqczy.jpg",  alt: "Open Waters" },
-    { src: "https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774258652/203f230b-92f2-46a3-94ca-aba668eeedb6_3_g9u79n.jpg",  alt: "Crew Life" },
+    { src: `${S3_ASSETS_BASE}/viber_image_2026-03-19_08-58-19-806.jpg`, alt: "Open Waters" },
+    { src: `${S3_ASSETS_BASE}/viber_image_2026-03-19_08-56-53-676.jpg`, alt: "Crew Life" },
   ];
 
   const faqs = useMemo(
@@ -219,10 +199,10 @@ export const HeroSection = () => {
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/25 to-transparent" />
             </div>
             {[
-              { src: 'https://res.cloudinary.com/dvbgmlsvl/image/upload/w_420,q_auto,f_auto/v1773983722/viber_image_2026-03-19_09-03-28-612_estxxi.jpg', alt: 'Islands' },
-              { src: 'https://res.cloudinary.com/dvbgmlsvl/image/upload/w_420,q_auto,f_auto/v1773993978/viber_image_2026-03-19_09-00-26-594_dub4nt.jpg', alt: 'Sailing' },
-              { src: 'https://res.cloudinary.com/dvbgmlsvl/image/upload/w_420,q_auto,f_auto/v1773993972/viber_image_2026-03-19_08-58-20-037_rpvrnj.jpg', alt: 'Island light' },
-              { src: 'https://res.cloudinary.com/dvbgmlsvl/image/upload/w_420,q_auto,f_auto/v1773983753/viber_image_2026-03-19_09-18-41-452_d1kxbd.jpg', alt: 'Coast' },
+              { src: `${S3_ASSETS_BASE}/viber_image_2026-03-19_09-03-28-612.jpg`, alt: 'Islands' },
+              { src: `${S3_ASSETS_BASE}/viber_image_2026-03-19_09-00-26-594.jpg`, alt: 'Sailing' },
+              { src: `${S3_ASSETS_BASE}/viber_image_2026-03-19_08-58-20-037.jpg`, alt: 'Island light' },
+              { src: `${S3_ASSETS_BASE}/viber_image_2026-03-19_09-18-41-452.jpg`, alt: 'Coast' },
             ].map((img) => (
               <div
                 key={img.src}
@@ -353,7 +333,7 @@ export const HeroSection = () => {
               style={{ gridColumn: '3', gridRow: '1', height: '214px' }}
               variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } } }}
             >
-              <img src="https://res.cloudinary.com/dvbgmlsvl/image/upload/w_500,q_auto,f_auto/v1773983722/viber_image_2026-03-19_09-03-28-612_estxxi.jpg"
+              <img src={`${S3_ASSETS_BASE}/viber_image_2026-03-19_09-03-28-612.jpg`}
                 alt="Mergui Islands" className="w-full h-full object-cover" />
             </motion.div>
 
@@ -362,7 +342,7 @@ export const HeroSection = () => {
               style={{ gridColumn: '4', gridRow: '1', height: '214px' }}
               variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } } }}
             >
-              <img src="https://res.cloudinary.com/dvbgmlsvl/image/upload/w_500,q_auto,f_auto/v1773993978/viber_image_2026-03-19_09-00-26-594_dub4nt.jpg"
+              <img src={`${S3_ASSETS_BASE}/viber_image_2026-03-19_09-00-26-594.jpg`}
                 alt="Sailing" className="w-full h-full object-cover" />
             </motion.div>
 
@@ -371,7 +351,7 @@ export const HeroSection = () => {
               style={{ gridColumn: '3', gridRow: '2', height: '214px' }}
               variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } } }}
             >
-              <img src="https://res.cloudinary.com/dvbgmlsvl/image/upload/w_500,q_auto,f_auto/v1773993972/viber_image_2026-03-19_08-58-20-037_rpvrnj.jpg"
+              <img src={`${S3_ASSETS_BASE}/viber_image_2026-03-19_08-58-20-037.jpg`}
                 alt="Island light" className="w-full h-full object-cover" />
             </motion.div>
 
@@ -380,7 +360,7 @@ export const HeroSection = () => {
               style={{ gridColumn: '4', gridRow: '2', height: '214px' }}
               variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } } }}
             >
-              <img src="https://res.cloudinary.com/dvbgmlsvl/image/upload/w_500,q_auto,f_auto/v1773983756/viber_image_2026-03-20_08-30-44-471_visy4t.jpg"
+              <img src={`${S3_ASSETS_BASE}/viber_image_2026-03-20_08-30-44-471.jpg`}
                 alt="Islands" className="w-full h-full object-cover" />
             </motion.div>
 
@@ -389,7 +369,7 @@ export const HeroSection = () => {
               style={{ gridColumn: '1', gridRow: '3', height: '158px' }}
               variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } } }}
             >
-              <img src="https://res.cloudinary.com/dvbgmlsvl/image/upload/w_500,q_auto,f_auto/v1773983743/viber_image_2026-03-19_09-10-09-093_obs4dr.jpg"
+              <img src={`${S3_ASSETS_BASE}/viber_image_2026-03-19_09-10-09-093.jpg`}
                 alt="Sailing" className="w-full h-full object-cover" />
             </motion.div>
 
@@ -398,7 +378,7 @@ export const HeroSection = () => {
               style={{ gridColumn: '2 / 4', gridRow: '3', height: '158px' }}
               variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } } }}
             >
-              <img src="https://res.cloudinary.com/dvbgmlsvl/image/upload/w_800,q_auto,f_auto/v1774074441/203f230b-92f2-46a3-94ca-aba668eeedb6_izk1rm.jpg"
+              <img src={`${S3_ASSETS_BASE}/viber_image_2026-03-19_09-03-29-005.jpg`}
                 alt="Onboard" className="w-full h-full object-cover" />
             </motion.div>
 
@@ -407,7 +387,7 @@ export const HeroSection = () => {
               style={{ gridColumn: '4', gridRow: '3', height: '158px' }}
               variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } } }}
             >
-              <img src="https://res.cloudinary.com/dvbgmlsvl/image/upload/w_500,q_auto,f_auto/v1773983753/viber_image_2026-03-19_09-18-41-452_d1kxbd.jpg"
+              <img src={`${S3_ASSETS_BASE}/viber_image_2026-03-19_09-18-41-452.jpg`}
                 alt="Islands" className="w-full h-full object-cover" />
             </motion.div>
         </motion.div>
@@ -483,32 +463,12 @@ export const HeroSection = () => {
               {/* Base — dark bg so there's no white flash while LQ loads */}
               <div className="absolute inset-0 bg-slate-900" />
 
-              {/* LQ video — placeholder while HQ buffers */}
-              {!hqReady && (
-                <video
-                  ref={videoLqRef}
-                  autoPlay muted loop playsInline preload="auto"
-                  onCanPlay={handleLqCanPlay}
-                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${lqReady ? 'opacity-100' : 'opacity-0'}`}
-                >
-                  <source src={LQ_URL} type="video/mp4" />
-                </video>
-              )}
-
-              {/* HQ video — always loading in background, fades in when ready */}
-          <video
-                ref={videoRef}
-                autoPlay muted loop playsInline preload="auto"
-                onCanPlay={handleHqCanPlay}
-            onError={() => {
-                  // HQ failed — keep LQ visible as fallback
-                  console.error('HQ video failed to load.')
-                  if (!hqReady) setLqReady(true)
-                }}
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${hqReady ? 'opacity-100' : 'opacity-0'}`}
-              >
-                <source src={HQ_URL} type="video/mp4" />
-          </video>
+              <img
+                src={ABOUT_MEDIA_IMAGE_SRC}
+                alt="Burma Sailing — on the water"
+                className="absolute inset-0 h-full w-full object-cover"
+                loading="lazy"
+              />
               <p className="absolute bottom-6 left-5 right-5 text-white text-[14px] md:text-[15px] leading-relaxed">
             Sailing in this region is not like cruising in mainstream
                 destinations. It requires trusted local expertise, careful
@@ -641,7 +601,7 @@ export const HeroSection = () => {
           viewport={{ once: true, amount: 0.35 }}
           variants={fadeUp}
         >
-            <img src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774170989/5ab9fc9c-c5a7-4cc1-8e0b-febfdc224300_2_nvhfdi.jpg" alt="Mergui sailing" className="h-full w-full object-cover" />
+            <img src={`${S3_ASSETS_BASE}/viber_image_2026-03-19_08-56-54-160.jpg`} alt="Mergui sailing" className="h-full w-full object-cover" />
             <div className="absolute inset-0 bg-black/25 backdrop-blur-[1px]" />
             <div className="absolute top-8 left-6 right-[35%] md:left-10 md:top-10 text-white">
               <p className="uppercase text-[12px] md:text-[13px] font-semibold tracking-[0.18em]">Our Services</p>
@@ -669,7 +629,7 @@ export const HeroSection = () => {
             {/* Left — image */}
             <motion.div className="relative overflow-hidden" variants={fadeUp}>
               <img
-                src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774170989/5ab9fc9c-c5a7-4cc1-8e0b-febfdc224300_2_nvhfdi.jpg"
+                src={`${S3_ASSETS_BASE}/viber_image_2026-03-19_08-56-54-160.jpg`}
                 alt="Mergui Archipelago — 800+ islands"
                 className="w-full h-full object-cover transition-transform duration-[1400ms] ease-out hover:scale-[1.04]"
               />
@@ -874,7 +834,7 @@ export const HeroSection = () => {
                 style={{ y: ctaY, top: -70, bottom: -70 }}
               >
                 <img
-                  src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1773983753/viber_image_2026-03-19_09-18-41-452_d1kxbd.jpg"
+                  src={`${S3_ASSETS_BASE}/viber_image_2026-03-19_09-18-41-452.jpg`}
                   alt="Ready to sail"
                   className="w-full h-full object-cover"
                 />

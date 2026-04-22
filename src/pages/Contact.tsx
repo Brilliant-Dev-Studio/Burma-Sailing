@@ -295,7 +295,7 @@ export default function Contact() {
               style={{ y: bannerImgY, top: -70, bottom: -70 }}
             >
               <img
-                src="https://res.cloudinary.com/dvbgmlsvl/image/upload/v1774074442/8e8ebcb7-3fe0-4e7f-8a14-b17b267a61f5_uk4nws.jpg"
+                src="https://burma-sailing-assets.s3.eu-north-1.amazonaws.com/11667e73-7e86-4aa0-8a8a-5749ed4d33e8.JPG"
                 alt="Mergui Archipelago hidden islands"
                 className="w-full h-full object-cover"
               />
