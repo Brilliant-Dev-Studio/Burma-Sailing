@@ -478,6 +478,7 @@ export const HeroSection = () => {
             </motion.div>
 
           </div>
+
         </div>
       </section>
 
