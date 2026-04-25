@@ -1,5 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import { motion } from 'framer-motion'
+
+import { SITE_URL } from '@/lib/siteConfig'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 14 },
@@ -25,7 +27,13 @@ const WAVE_PALETTES = [
   { c1: '#c4b5fd', c2: '#a78bfa', stroke: '#7c3aed' },
 ] as const
 
-const testimonials = [
+type Testimonial = {
+  quote: ReactNode
+  name: string
+  role: string
+}
+
+const testimonials: Testimonial[] = [
   {
     quote: `We had a great experience working with your agency during our trip.
 
@@ -57,9 +65,30 @@ Not cheap, but worth it.`,
     name: 'Bruce John',
     role: 'Superyacht captain',
   },
-] as const
-
-type Testimonial = (typeof testimonials)[number]
+  {
+    quote: (
+      <>
+        A friend of mine that follows my journey knew that I was really keen to go Myanmar
+        and he also wanted to go there but sold his boat. So to help me, he found an agent that
+        spoke perfect English and who turned out to be very reliable. He gave us a really good
+        quality of service because he was so keen to encourage more people to visit the area.
+        His name was Nai Nai from{' '}
+        <a
+          href={SITE_URL}
+          className="font-medium text-teal-700 underline decoration-teal-600/35 underline-offset-2 hover:text-teal-800"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Burma Sailing
+        </a>
+        . He was very easy to communicate with via WhatsApp, which might be helpful for other
+        cruisers planning their own trip.
+      </>
+    ),
+    name: 'James Ashwell',
+    role: 'SV Uhuru of London',
+  },
+]
 
 /** ~1 card + peek on small screens, ~2 on md, ~3 on lg */
 const CARD_SHELL =
@@ -183,7 +212,7 @@ function TestimonialCard({
 
   return (
     <article
-      className="group relative flex h-full min-h-[240px] flex-col overflow-hidden rounded-3xl border border-slate-200/90 bg-gradient-to-br from-white via-white to-slate-50/90 shadow-sm transition-[box-shadow,transform] duration-300 hover:shadow-md md:min-h-[260px]"
+      className="group relative flex min-h-[200px] flex-col overflow-hidden rounded-3xl border border-slate-200/90 bg-gradient-to-br from-white via-white to-slate-50/90 shadow-sm transition-[box-shadow,transform] duration-300 hover:shadow-md md:min-h-[220px]"
     >
       <CardMiddleWaves
         cardIndex={dataIdx}
@@ -195,7 +224,7 @@ function TestimonialCard({
         className="pointer-events-none absolute inset-0 z-[1] rounded-3xl bg-gradient-to-b from-white/30 via-transparent to-slate-50/40"
         aria-hidden
       />
-      <div className="relative z-10 flex min-h-full min-h-0 flex-col p-6 md:p-7">
+      <div className="relative z-10 flex flex-col p-6 md:p-7">
         <p
           className="font-serif text-[3rem] leading-[0.85] text-teal-600/[0.22] select-none md:text-[3.35rem]"
           style={{ textShadow: '0 1px 0 rgba(255,255,255,0.8)' }}
@@ -203,7 +232,7 @@ function TestimonialCard({
         >
           “
         </p>
-        <blockquote className="-mt-1 flex-1 min-h-0 whitespace-pre-line font-serif text-[14px] leading-[1.75] text-slate-600 antialiased md:text-[15px] md:leading-[1.8] testimonial-quote-clamp">
+        <blockquote className="-mt-1 whitespace-pre-line font-serif text-[14px] leading-[1.75] text-slate-600 antialiased md:text-[15px] md:leading-[1.8] [&_a]:break-words">
           {t.quote}
         </blockquote>
         <footer className="mt-6 border-t border-slate-200/80 pt-5 md:mt-7 md:pt-6">
@@ -233,30 +262,6 @@ export default function HomeTestimonialsSection() {
       className="relative mt-[100px] md:mt-[120px] overflow-hidden border-t border-slate-200/80 bg-gradient-to-b from-slate-50/95 via-white to-slate-50/70"
       aria-labelledby="home-testimonials-heading"
     >
-      <style>{`
-        .testimonial-quote-clamp {
-          display: -webkit-box;
-          -webkit-box-orient: vertical;
-          -webkit-line-clamp: 5;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          min-height: 0;
-        }
-        .group:hover .testimonial-quote-clamp {
-          -webkit-line-clamp: unset;
-          overflow: auto;
-          max-height: 10.5rem;
-          padding-right: 0.25rem;
-          flex: none;
-          overscroll-behavior: contain;
-          scrollbar-width: none;
-          -ms-overflow-style: none;
-        }
-        .group:hover .testimonial-quote-clamp::-webkit-scrollbar {
-          width: 0;
-          height: 0;
-        }
-      `}</style>
       {/* Subtle header rule */}
       <div
         className="pointer-events-none absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-teal-500/25 to-transparent"
@@ -318,7 +323,7 @@ export default function HomeTestimonialsSection() {
             </ul>
           ) : (
             <div className="testimonial-marquee-clip testimonial-marquee-wrap -mx-1 overflow-hidden px-1 md:-mx-2 md:px-2">
-              <div className="testimonial-marquee-track flex gap-6 md:gap-7">
+              <div className="testimonial-marquee-track flex items-start gap-6 md:gap-7">
                 {loop.map((t, loopIdx) => {
                   const dataIdx = loopIdx % testimonials.length
                   return (

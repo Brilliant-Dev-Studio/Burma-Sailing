@@ -661,6 +661,93 @@ const rawGalleryImages: RawGalleryImage[] = [
   },
 ];
 
+/** Direct S3 keys (same bucket as viber assets). MP4 and other non-images excluded. */
+const S3_UUID_GALLERY_FILENAMES = [
+  "02be9549-f261-45b2-bacb-9b527b276cd3.JPG",
+  "0569e968-45d3-42f6-9d1b-0a140101f434.JPG",
+  "076db060-dabd-4eac-993e-f2f2238f56e8.JPG",
+  "0caed951-9059-48bf-a8ec-1c4267f25964.JPG",
+  "0d6096d6-156b-451e-873d-a76ad64f8e0c.JPG",
+  "0f57832d-7a27-4bef-9e9a-ecf13bd8b27b.JPG",
+  "107016e8-1be5-44bf-89f1-03bbf9e26514.JPG",
+  "111897e0-b633-4b83-925e-6bceca4ef913.JPG",
+  "113df868-fb47-4cad-9d59-cabb3f0b9258.JPG",
+  "11667e73-7e86-4aa0-8a8a-5749ed4d33e8.JPG",
+  "15908664-cfa4-4f33-b129-538c629ba4ff.JPG",
+  "1a71ebe1-0cac-4420-82b9-22ef1f0d24c5.JPG",
+  "1b22e7b5-e80a-456a-af4b-dfa4343ac08d.JPG",
+  "1e56fe53-b1f2-4d45-8c17-f6805817b098.JPG",
+  "1faf7838-5bbb-4da2-8f2a-e86d27367650.JPG",
+  "203ddd8b-a3da-40c0-9a13-568d4fd3064b.JPG",
+  "21174813-a046-4a5d-8e10-4439cf736eef.JPG",
+  "21824db7-b647-4ad3-ad5f-0b254459a565.JPG",
+  "23b11a8e-76aa-4e4d-bfc7-a1cc5129f261.JPG",
+  "29d37bea-5bfb-4f31-93d9-5ef9117178b4.JPG",
+  "2ce2b454-da85-4783-99fb-478ba7727334.JPG",
+  "369f1d1e-583e-472f-8b9a-392facebd8ee.JPG",
+  "38093d21-35f0-4709-934b-e1b01530654c.JPG",
+  "399e474f-cf70-4995-adad-5868f5129521.JPG",
+  "3bad00a2-609f-45f3-b35a-02aea4d42b90.JPG",
+  "3c8bdc6e-d245-4892-a6e9-9eb6c2cb735f.JPG",
+  "3cf06f1e-b389-4de3-9857-e749c609228b.JPG",
+  "3d243926-c1ad-4ea5-bfe6-57c0bed32ca2.JPG",
+  "3ea6a29f-2bee-4dc3-92dc-186f65d87259.JPG",
+  "412d6d78-0e69-456e-9ea2-9b5c138f3e56.JPG",
+  "42c9af5c-a0d3-4c68-a65d-9bd623b75565.JPG",
+  "485e0e5e-4dc8-489b-9b12-4194f797f037.JPG",
+  "4a2ef7a1-4379-4902-9ac4-a249ec47af39.JPG",
+  "4af0c9fc-91f0-496a-97cd-5edf7571b63b.JPG",
+  "4e11ee0c-803e-4238-8e61-d028dd2e9b19.JPG",
+  "4e120045-34ce-45fb-820f-171eaa0b0118.JPG",
+  "4f24b3c7-e830-4ab3-a714-d74b8e293d91.JPG",
+  "53be3f87-6c93-47a3-9796-cc5049e33d3e.JPG",
+  "54cc2372-ff5f-4b3e-b64e-9d5812fbb4df.JPG",
+  "56d4adf0-a526-4160-9e37-f6046e7e3231.JPG",
+  "57187298-c724-4d8f-bedd-8fd221230407.JPG",
+  "5ce2582f-d203-4219-b3e1-cf7aaf53f343.JPG",
+  "601c12f5-ebc6-4252-8f26-81329f504aaf.JPG",
+  "615ff71e-de34-48ed-b8b9-8a9762655b67.JPG",
+  "61b6c8ac-0fad-433f-9b49-23cb77116234.JPG",
+  "62bbb717-8d9e-40a0-9736-09460c175389.JPG",
+  "63e9648e-8022-400c-86a5-f76c795d7785.JPG",
+  "6688f9bc-e531-4f70-b18d-34d966c5a6bb.JPG",
+  "6cc16e91-52cf-47a9-b971-e6231759c7f7.JPG",
+  "6d0c0639-cf0e-406c-a54c-07718346678d.JPG",
+  "71eabfc7-2183-4e32-b3e9-3b511dc484e2.JPG",
+  "7446725b-382b-450f-9a44-38428e43f73a.JPG",
+  "7550f91d-9176-41f9-a9c5-f2340e931d31.JPG",
+  "7827b1a2-e542-4220-8137-cb063194e9bc.JPG",
+  "7a486483-1f84-43e8-89a5-18523959f02f.JPG",
+  "7b133cc8-5a3c-4d5c-ad47-37b2b2d20d33.JPG",
+  "7ec8065b-f50f-45b7-8fe1-666bb86b145b.JPG",
+  "7f331292-32af-48c8-b9a2-1761a0226478.JPG",
+  "81618fe2-71b3-4b8f-a992-a359d1647eb1.JPG",
+  "83104a5b-6ce6-4215-befe-d875f0a5ac70.JPG",
+  "84352c1c-f4c4-4a47-ab3b-1c8130e810c3.JPG",
+  "84fb8eea-7ee4-4375-b75e-dc75384da07f.JPG",
+  "87395965-7659-46d6-aff4-dbf96bab96d9.JPG",
+  "89257a62-1e42-4f8d-aa41-8b8f55d9e515.JPG",
+  "8bb4a05c-567c-4ec0-a10a-4e61f24791b7.JPG",
+  "8cff2450-32a5-4937-b713-ca3de5691e5a.JPG",
+  "8d28ec11-0675-4f43-a899-879de950c0fa.JPG",
+  "8e173887-82c7-4694-abb8-9df6662305d0.JPG",
+  "8efc3418-657e-4036-954e-b3aa077907e5.JPG",
+  "90971316-c2cc-4686-b33a-06225853d80f.JPG",
+  "92bc3619-da1f-4adf-9a30-f9ac9eeb9f86.JPG",
+  "9421b6ba-dd1c-4b2a-941b-ab0334e04be9.JPG",
+  "9b08f93f-e8a8-47f2-b201-dae601fea4f6.JPG",
+  "9e14dee1-7d58-4860-9c01-204cea9d6e98.JPG",
+  "9e34c6d6-65e4-4e74-9d0d-fd41a39e5c93.JPG",
+  "9e6ba41a-acf4-417e-b52c-c0a761f75019.JPG",
+  "9fa1cc51-5d2b-45f8-810b-564d60ca1661.JPG",
+] as const;
+
+const CATEGORY_CYCLE: GalleryImage["category"][] = [
+  "Sailing",
+  "Islands",
+  "Onboard",
+];
+
 function normalizeViberFilename(filename: string): string {
   // viber_image_..._abcdef.jpg -> viber_image_....jpg
   return filename.replace(/_(?:[a-z0-9]{6,})\.(jpg|jpeg|png|webp)$/i, ".$1");
@@ -672,9 +759,22 @@ function toS3FromCloudinaryImageUrl(url: string): string {
   return `${S3_ASSETS_BASE}/${normalizeViberFilename(filename)}`;
 }
 
-export const galleryImages: GalleryImage[] = rawGalleryImages
+const galleryImagesFromViber: GalleryImage[] = rawGalleryImages
   .filter((img) => img.url.includes("/viber_image_"))
   .map((img) => ({
     ...img,
     url: toS3FromCloudinaryImageUrl(img.url),
   }));
+
+const s3UuidGalleryImages: GalleryImage[] = S3_UUID_GALLERY_FILENAMES.map(
+  (filename, i) => ({
+    url: `${S3_ASSETS_BASE}/${filename}`,
+    caption: "",
+    category: CATEGORY_CYCLE[i % CATEGORY_CYCLE.length]!,
+  }),
+);
+
+export const galleryImages: GalleryImage[] = [
+  ...galleryImagesFromViber,
+  ...s3UuidGalleryImages,
+];
